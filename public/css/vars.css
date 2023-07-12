@@ -1,0 +1,19 @@
+:root {
+	--backgroundColor: #f7f7f7;
+	--primaryColor: #0071bb;
+	--secondaryColor: #989898;
+	--lightColor: #eaeaea;
+	--textColorPrimary: #0071bb;
+	--textColorSecondary: #989898;
+	--textColorDark: #222222;
+	--textColorLight: #eaeaea;
+	--textColorDanger: #ff4d4f;
+	--darkGrayColor: #5d5d5d;
+	--rgbPrimary: 249, 224, 30;
+    --black: #000;
+    --bluePrimary: #012f7a;
+    --blueSecondary: #1571bd;
+    --greenPrimary: #59a76a;
+    --backMain: #eff4ff;
+
+}

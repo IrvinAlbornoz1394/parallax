@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'SometypeMono-Regular';
+    font-style:  normal;
+    font-weight: 100;
+    src: url('SometypeMono-Regular.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SometypeMono-Bold';
+    font-style:  normal;
+    font-weight: 100;
+    src: url('SometypeMono-Bold.ttf');
+    font-display: swap;
+}

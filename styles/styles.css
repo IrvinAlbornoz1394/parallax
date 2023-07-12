@@ -1,0 +1,95 @@
+.body{
+    background: #000
+}
+
+.btn{
+    background-color: #E7FD52;
+    border-radius: 3px;
+    border: solid 1px #000;
+    color: #000;
+    cursor:pointer;
+    border: none;
+    
+}
+
+.btn:hover{
+    border: none;
+}
+
+.textBold{
+    font-family: SometypeMono-Bold !important;
+    font-weight: bold;
+    color: #000;
+}
+
+.txtYellow{
+    color: var(--primary);
+}
+.carTexYellow{
+    background-color: var(--primary);
+    color: var(--blackPrimary);
+    border-radius: 6px;
+}
+
+.yellowPassionate{
+    padding-right: 20px;
+}
+
+.yellowAlien{
+    padding-left: 20px;
+}
+
+.btn-bold span{
+    font-family: SometypeMono-Bold !important;
+}
+
+.btn-primary{
+    background-color: var(--primary);
+    border-radius: 3px;
+    border: none;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.full-work{
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+.font-30{
+    font-size: 18px;;
+}
+
+.text_white{
+    color: #ffff !important;
+}
+
+/* Titulos de la lista de hover */
+.titleListHover{
+    font-weight: bold;
+    margin-bottom: 0px !important;
+    line-height: 1;
+}
+
+.img-100{
+    width: 100%;
+}
+
+.item-main-menu{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+.font-30{
+    font-size: 30px;
+}
+
+.font-18{
+    font-size: 18px;
+}
+
+.font-xxl{
+    font-size: 105px !important;
+}

@@ -1,3 +1,9 @@
+@import 'fonts/SometypeMono/styles.css';
+
+*{
+  font-family: 'SometypeMono-Regular' !important;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -104,4 +110,35 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.txt-white{
+  color: white !important;
+}
+
+.img-full-screen{
+  width: 100%;
+}
+
+.relative{
+  position: relative;
+}
+
+.hfull{
+  min-height: 100vh !important;
+  display: flex;
+}
+
+.hfull > .ant-row{
+  width: 100% !important;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
 }
