@@ -124,6 +124,11 @@ a {
   color: white !important;
 }
 
+.txt-black{
+  color: #000 !important;
+}
+
+
 .img-full-screen{
   width: 100%;
 }

@@ -19,7 +19,7 @@ const Crew = ({refLef, refRight, ...props}) => {
     <div className='hfull' id="section_Crew">
         <Row justify={'center'} className='row_crew'>
             <Col span={20 }>
-                <Text className='titleCrew textBold'>
+                <Text className='titleCrew'>
                     _Crew
                 </Text>
                 <br/>

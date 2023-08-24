@@ -25,7 +25,7 @@ const Cookies = () => {
         styles={css`
           .coockiesCard{
             position: fixed;
-            z-index:100;
+            z-index:99;
             bottom: 50px;
             right: 50px;
             width: 440px;

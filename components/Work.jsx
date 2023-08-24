@@ -1,10 +1,12 @@
 import { Global, css } from '@emotion/react'
 import { Col, Row, Typography } from 'antd'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const Work = () => {
 
     const { Text, Title } = Typography 
+    const hoverWorkSection = useSelector((state) => state?.web?.hoverWorkSection)
 
   return (
     <>
@@ -12,11 +14,23 @@ const Work = () => {
             styles={css`
                 .overlay{
                     position: absolute;
-                    background-color: rgba(0, 0 ,0 , .40);
+                    background-color: rgba(0, 0 ,0 , 0);
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    transition: background-color 1s;
+
+                }
+                .overlay-hover{
+                    position: absolute;
+                    background-color: var(--primary);
+                    opacity: 85%;
                     width: 100%;
                     height: 100%;
                     display: flex;
                     top:0
+                    transition: background-color 1s 1s;
+                    cursor:pointer;
                 }
                 .title-work{
                     margin: auto !important;
@@ -32,8 +46,8 @@ const Work = () => {
             `}
         />
         <section id="section_Work" className='hfull back_main_work'>
-            <div className='overlay'>
-                    <Title className='title-work bold txt-white font-xxl'>
+            <div id="overlay_work" className={hoverWorkSection == true ? 'overlay-hover' : 'overlay'}>
+                    <Title className={`title-work bold ${hoverWorkSection === true ? 'txt-black' : 'txt-white'} font-xxl`}>
                         Work
                     </Title>
             </div>
@@ -49,7 +63,7 @@ const Work = () => {
             <img src='/images/kikert_parallax.jpg' style={{ opacity:0 }} />
             <div className='overlay'>
                     <Title className='title-work bold txt-white'>
-                        Work
+                        WorkhoverWorkSection
                     </Title>
             </div>
         </div> */}

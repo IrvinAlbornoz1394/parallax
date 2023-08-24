@@ -7,7 +7,7 @@ const TextDescription = ({currentProject, ...props}) => {
             <p style={{ marginBottom:40 }}>
                 { currentProject?.name }
             </p>
-            <p className='' style={{ textAlign:'justify' }}>
+            <p className='description-work' style={{ textAlign:'justify' }}>
                 <div dangerouslySetInnerHTML={{__html: currentProject?.description }} />
                 {/* {
                     currentProject?.description.replace(/<[^>]+>/g, '')

@@ -3,6 +3,7 @@ import { Button, Layout, Menu, Typography } from 'antd'
 import { Global, css } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { gsap } from 'gsap';
+import { routerTransition } from '../../libs/functions'
 
 const MyHeader = () => {
     const hoverWork = useSelector((state) => state.web?.hoverWork)
@@ -92,8 +93,6 @@ const MyHeader = () => {
                 }
                 .btn_new_proyect_header{
                     background-color: ${ hoverNvoProjectHeader == true ?  "#E0FF10" : "#E7FD52"} ;
-                    font-size: 16px;
-                    font-weight: bold;
                     width: 218px;
                     height: 54px;
                 }
@@ -124,7 +123,7 @@ const MyHeader = () => {
                 </div>
                 <Menu  onClick={(e) => linkToSection(e)} className='mainMenu' mode="horizontal" items={items1}/>
                 <div style={{ flex: 1, display:'flex', justifyContent:'end' }}>
-                    <button id="btn_nvo_project_header" className='btn textBold btn_new_proyect_header' style={{ marginTop:'auto', marginBottom:'auto' }}>Start trip!</button>
+                    <button id="btn_nvo_project_header" className='btn btn_new_proyect_header font-18' style={{ marginTop:'auto', marginBottom:'auto' }}>Start trip!</button>
                 </div>
             </Header>
         </>
@@ -138,7 +137,9 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
         background: "transparent",
-        zIndex:100
+        zIndex:100,
+        position:'fixed',
+        backdropFilter: 'blur(10px)'
     },
     logo: {
         margin: '16px 0 16px 0',

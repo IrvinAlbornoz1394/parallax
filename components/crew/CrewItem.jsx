@@ -95,7 +95,7 @@ const CrewItem = ({img, name = null, description = null, ...props}) => {
                     {name}
                 </Text>
                 <br />
-                <small className='small-description-crew font-18 txt-white'>
+                <small className='small-description-crew font-18'>
                     {description}
                 </small>
                 <br />

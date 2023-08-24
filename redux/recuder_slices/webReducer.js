@@ -16,8 +16,10 @@ export const webSlice = createSlice({
     hoverBrand: false,
     hoverMotion: false,
     hoverSoftware: false,
+    hoverStartProject: false,
     services: [],
     showCookies: true,
+    hoverWorkSection: false,
     hoverServices: {
       'uxui': false,
       'brand': false,
@@ -90,6 +92,9 @@ export const webSlice = createSlice({
     setHoverWork: (state, action) => {
       state.hoverWork = action.payload
     },
+    setHoverSectionWork: (state, action) => {
+      state.hoverWorkSection = action.payload
+    },
     setHoverNvoProject: (state, action) => {
       state.hoverNvoProject = action.payload
     },
@@ -107,6 +112,9 @@ export const webSlice = createSlice({
     },
     setHoverCookies: (state, action) => {
       state.hoverCookies = action.payload
+    },
+    setHoverStartProject: (state, action) => {
+      state.hoverStartProject = action.payload
     },
     setCursorPointer: (state, action) => {
       state.cursorPointer = action.payload
@@ -135,12 +143,14 @@ export const {
           decrement, 
           incrementByAmount, 
           setHoverWork, 
+          setHoverSectionWork,
           setHoverNvoProject, 
           setHoverNvoProjectHeader, 
           setHoverActive, 
           setHoverArrowLeft, 
           setHoverArrowRight,
           setCursorPointer, 
+          setHoverStartProject,
           loadServices,
           updHoverServices,
           updHoverLinks,

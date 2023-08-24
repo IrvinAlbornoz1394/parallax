@@ -3,6 +3,8 @@ import { Col, Layout, Progress, Row, Typography } from 'antd'
 import { Global, css } from '@emotion/react';
 import { gsap } from 'gsap';
 import { Fade } from "react-awesome-reveal";
+import { SplitText } from '../libs/SplitText.min'
+import { ScrollTrigger } from '../libs/ScrollTrigger.min'
 
 
 /* import { ScrollTrigger } from "gsap/ScrollTrigger"; */
@@ -36,14 +38,109 @@ const Index = () => {
     const dispatch = useDispatch()
     const component = useRef();
 
-
     const services = useSelector((state) => state.web?.services)
     const showCookies = useSelector((state) => state.web.showCookies)
-    
     
     useLayoutEffect(() => {    
         dispatch(loadServices())
     }, []);
+
+    useEffect(() => {
+
+        gsap.registerPlugin(ScrollTrigger, SplitText);
+        //gsap.config({ trialWarn: false });
+        gsap.set(".textContent", { autoAlpha: 1 });
+
+        
+        let animation = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".textContent",
+              toggleClass: "someCoolClass",
+              toggleActions: "restart pause resume pause"
+            }
+          });
+    
+        var splitHide = new SplitText("#textRevel", { type: "words", wordsClass: "hide" });
+        let split = new SplitText("#textRevel", {
+            type: "words,lines",
+            wordsClass: "words",
+            linesClass: "lines"
+        })
+
+        /* Opcion1 */
+        animation.from(split.words, {
+            duration: 0.5,
+            y: -100,
+            stagger: 0.010,
+            delay: .005,
+            stagger:{
+                from:"start", //try "center" and "edges"
+                each:0.011
+            }
+        });
+
+
+        /* Opcion2 */
+        /* animation.from(split.lines, {
+            duration: 0.5,
+            y: -100,
+            stagger: 0.010,
+            delay: .005,
+            stagger:{
+                from:"start", //try "center" and "edges"
+                each:0.5
+            }
+        }); */
+
+
+        /* split.lines.map(item => {
+            animation.set(item, { autoAlpha: 1 });
+            animation.from(item, {
+                y: -100,
+                ease: "power3.out",
+                delay: .1,
+                stagger: {
+                    amount: 1
+                }
+            })
+        }) */
+
+        
+
+        /* animation.from(split.lines, { 
+        opacity:0,
+        y:50,
+        ease:"back(4)",
+        stagger:{
+            from:"start", //try "center" and "edges"
+            each:0.05
+        }
+        }) */
+
+
+        
+
+        /* Bueno */
+        /* var tl = gsap.timeline(),
+        mySplitText = new SplitText("#textRevel", {
+            type: "lines, words",
+            linesClass: "line"
+        }),
+        words = mySplitText.words
+
+        tl.from(words, {
+            duration: 0.8,
+            opacity: 0,
+            yPercent: -150,
+            ease: "power4",
+            stagger: 0.02
+          }); */
+
+
+        }, []) 
+    
+
+
  
     return (
         <>
@@ -107,8 +204,12 @@ const Index = () => {
             }
 
             .titleCrew{
-                font-size: 75px;
-                color: white;
+                color: #FFF;
+                font-family: SometypeMono-Regular !important;
+                font-size: 105px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
             }
 
             /* Carousel */
@@ -143,6 +244,38 @@ const Index = () => {
             .list_flat{
                 list-style: none !important;
             }
+
+            .lineHide {
+                position:absolute relative;
+                overflow: hidden !important;
+                width:100%;
+            }
+
+              #textHolder {
+                top: 50px;
+                left: 30px;
+                width: 900px;
+                color: white;
+                font-family: "Signika Negative", sans-serif; 
+                position: relative;
+                overflow: hidden;
+              }
+
+
+              #someCoolClass {
+                position: relative;
+                top: 50px;
+                left: 70px;
+                width: 600px;
+                color: red;
+                font-family: "Signika Negative", sans-serif; 
+              }
+
+              .textSplit > .lines{
+                line-height: 20px;
+                overflow:hidden;
+              }
+
             `}
         />
         <MainLayout>
@@ -176,15 +309,15 @@ const Index = () => {
                                         Less common, more <span className='carTexYellow yellowAlien'>alien</span>.
                                     </li>
                                 </ul>
-                                
-                                    <Text className='txt-white font-18 textSplit'>
-                                        <Fade  duration={10} top cascade>Aumenta la participación de mercado y </Fade><div className='textYellow'><Fade cascade duration={10} delay={200}>optimiza la experiencia del cliente </Fade></div>
-                                        <Fade top cascade duration={10} delay={400} >trabajando</Fade><br/>
-                                        <Fade top cascade duration={10} delay={500} >con nuestro equipo para crear productos y servicios digitales modernos de una manera</Fade><br/> 
-                                        <Fade top cascade duration={10} delay={800} >colaborativa y </Fade><span className='textBold txt-white'>
-                                        <Fade top cascade duration={10} delay={900}>centrada en el ser humano</Fade> </span>
-                                        
-                                    </Text>
+                                <div className='textContent'>
+                                    <div id="textHolder">
+                                        <p className='txt-white font-18 textSplit' id="textRevel">
+                                            Aumenta la participación de mercado y optimiza la experiencia del cliente trabajando 
+                                            con nuestro equipo para crear productos y servicios digitales modernos de una manera 
+                                            colaborativa y centrada en el ser humano
+                                        </p>
+                                    </div>
+                                </div>
                                 
                         </Col>
                     </Row>

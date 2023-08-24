@@ -30,14 +30,13 @@ const MainFullScreen = () => {
         }
         
         .btn_new_proyect{
-          background-color: ${ hoverNvoProject == true ? "white" : "black" };
+          background-color: ${ hoverNvoProject == true ? "#E7FD52" : "black" };
           border-radius: 3px;
-          border: solid 2px #FFFFFF;
-          font-size: 16px;
-          color: ${hoverNvoProject == true ? "#00000" : "#FFFFFF"};
-          font-weight: bold;
+          border: solid 2px #E7FD52;
+          color: ${hoverNvoProject == true ? "#00000" : "#E7FD52"};
           width: 218px;
           height: 54px;
+          cursor: pointer;
         }
 
         .btn_work{
@@ -45,10 +44,9 @@ const MainFullScreen = () => {
           border-radius: 3px;
           border: solid 2px #FFFFFF;
           color: ${hoverWork == true ? "#00000" : "#FFFFFF"};
-          font-size: 16px;
-          font-weight: bold;
           width: 218px;
           height: 54px;
+          cursor: pointer;
         }
       `}
     />
@@ -59,8 +57,8 @@ const MainFullScreen = () => {
         </Col>
         <Col span={24} style={styles.cols}>
               <Space size={100} style={styles.spaceBtns}>
-                <button className='btn_work textBold'  id="btn_work"  /* onMouseEnter={() => hoverBtnWork() } onMouseLeave={() => setHoverWork(false)} */ >Work</button>
-                <button className='btn btn_new_proyect textBold' id="btn_new_project" >Nuevo proyecto</button>
+                <button className='btn_work font-18'  id="btn_work" >Work</button>
+                <button className='btn btn_new_proyect font-18' id="btn_new_project" >Nuevo proyecto</button>
                 </Space>
             </Col>
         </Row>

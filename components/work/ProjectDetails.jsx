@@ -67,13 +67,21 @@ const ProjectDetails = () => {
                     margin-bottom:100px;
                 }
                 .text-project-description{
-                    padding:50px 20px;
+                    padding: 50px 66px 50px 20px;
 
                 }
                 .text-project-description > *{
                     color: #FFF;
                     font-size: 24px;
                     font-family: Sometype Mono;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px;
+                }
+
+                .description-work{
+                    color: #FFF;
+                    font-size: 18px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 26px;

@@ -1,8 +1,9 @@
 import { Global, css } from '@emotion/react'
 import React, { useEffect } from 'react'
-import { gsap } from 'gsap';
+import { gsap, selector } from 'gsap';
 import { useSelector, useDispatch } from 'react-redux'
-import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverActive, setHoverArrowLeft, setHoverArrowRight, setCursorPointer, updHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie } from '../redux/recuder_slices/webReducer'
+import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverActive, setHoverArrowLeft, setHoverArrowRight, setCursorPointer, updHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject } from '../redux/recuder_slices/webReducer'
+import { routerTransition } from '../libs/functions'
 
 const Demo = ({refLef, refRight, ...props}) => {
 
@@ -20,7 +21,8 @@ const Demo = ({refLef, refRight, ...props}) => {
   const cursorPointer = useSelector((state) => state.web?.cursorPointer)
   const hoverItemsCrew = useSelector((state) => state.web?.hoverItemsCrew)
   const hoverCookies = useSelector((state) => state.web?.hoverCookies)
-
+  const hoverWorkSection = useSelector((state) => state?.web?.hoverWorkSection)
+  const hoverStartProject = useSelector((state) => state?.web?.hoverStartProject)
 
   useEffect(() => {
     document.addEventListener('mousemove', onMouseMove);
@@ -39,7 +41,7 @@ const Demo = ({refLef, refRight, ...props}) => {
 
   const hoverFn = (e) => {
     /* Obtener coordenadas del boton work */
-    if(validateHoverWork(e) || validateHoverNvoProj(e) || validateHoverNvoProjHeader(e)){
+    if(validateHoverWork(e) || validateHoverNvoProj(e) || validateHoverNvoProjHeader(e) || validateHoverStartProject(e) ){
       /* setHoverActive(true) */
       mouseHover(true)
     }else{
@@ -54,11 +56,16 @@ const Demo = ({refLef, refRight, ...props}) => {
       mouseHover(true, false)
     }
 
+
     validateHoverServices(e)
 
     validateHoverMenu(e)
 
     validateHoverCrew(e)
+
+    if(validateHoverWorkSection(e)){
+      mouseHover(true)
+    }
 
     if(validateHoverLinksProjects(e)){
       mouseHover(true, false)
@@ -105,6 +112,28 @@ const Demo = ({refLef, refRight, ...props}) => {
         return true
       } else if((xminProj > e.x || e.x > xmaxProj || yminProj > e.y || e.y > ymaxProj)){
         dispatch(setHoverNvoProject(false))
+        return false
+      }
+    }
+  }
+
+  
+  const validateHoverStartProject = (e) => {
+    /* Obtenemos coordenadas del boton nuevo proyecto */
+    let btnNewProj = document.getElementById("startProject")
+    if(btnNewProj){
+      let coordsNvoProj = btnNewProj.getBoundingClientRect();
+
+      let xminProj = coordsNvoProj.x
+      let xmaxProj = coordsNvoProj.x + coordsNvoProj.width
+      let yminProj = coordsNvoProj.y 
+      let ymaxProj = coordsNvoProj.y + coordsNvoProj.height
+
+      if (xminProj < e.x && e.x < xmaxProj && yminProj < e.y && e.y < ymaxProj && !hoverStartProject){
+        dispatch(setHoverStartProject(true))
+        return true
+      } else if((xminProj > e.x || e.x > xmaxProj || yminProj > e.y || e.y > ymaxProj)){
+        dispatch(setHoverStartProject(false))
         return false
       }
     }
@@ -191,6 +220,28 @@ const Demo = ({refLef, refRight, ...props}) => {
         return true
       } else if(xminCookies > e.x || e.x > xmaxCookies || yminCookies > e.y || e.y > ymaxCookies && hoverArrowL) {
         dispatch(setHoverCookies(false))
+        return false
+      }
+    }
+  }
+
+  /* Validar hover para la sección de work */
+  const validateHoverWorkSection = (e) => {
+    /* Obtenemos coordenadas del boton nuevo proyecto */
+    let work_section = document.getElementById("section_Work")
+    if(work_section){
+      let coords_work_section = work_section.getBoundingClientRect();
+
+      let xminSectionWork = coords_work_section.x
+      let xmaxSectionWork = coords_work_section.x + coords_work_section.width
+      let yminSectionWork = coords_work_section.y
+      let ymaxSectionWork = coords_work_section.y + coords_work_section.height
+
+      if (xminSectionWork < e.x && e.x < xmaxSectionWork && yminSectionWork < e.y && e.y < ymaxSectionWork){
+        dispatch(setHoverSectionWork(true))
+        return true
+      } else if(xminSectionWork > e.x || e.x > xmaxSectionWork || yminSectionWork > e.y || e.y > ymaxSectionWork) {
+        dispatch(setHoverSectionWork(false))
         return false
       }
     }
@@ -423,8 +474,9 @@ const clickFunction = () => {
 
   for (const [key, value] of Object.entries(hoverItemsMenu)) {
     if(value == true){  
+      routerTransition()
       let element = document.getElementById(`section_${key}`);
-      element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+      /* element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"}); */
     }  
 }
   
@@ -444,12 +496,11 @@ const clickFunction = () => {
           border: 1px solid var(--primary);
           border-radius: 50%;
           pointer-events: none;
-          z-index:200;
+          z-index:101;
         }
         .cursor-example {
-          
           width: 10px;
-          z-index:200;
+          z-index:102;
           height: 10px;
           position: fixed;
           top: 0;
