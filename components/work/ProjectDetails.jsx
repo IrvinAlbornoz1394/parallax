@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic'
 /* Components */
 import ContactSection from '../ContactSection'
 import VideoContent from './elements/VideoContent'
+import Carrousel from './elements/Carrousel'
 const TextDescription = dynamic(() => import('../work/elements/TextDescription'),{
     ssr: false,
   })
@@ -33,8 +34,6 @@ const ProjectDetails = () => {
 
 
     const getProject = (id) => {
-        console.log('get', id)
-        console.log('projects', projects)
         let cp = projects.filter(item => item.id == id);
         console.log('cp',cp )
         if(cp.length > 0){
@@ -64,7 +63,9 @@ const ProjectDetails = () => {
                     margin: 0px 30px;
                 }
                 .sectionTitleProject{
-                    margin-bottom:100px;
+                    height: 400px;
+                    padding-top:60px;
+                    padding-bottom: 20px;
                 }
                 .text-project-description{
                     padding: 50px 66px 50px 20px;
@@ -87,25 +88,71 @@ const ProjectDetails = () => {
                     line-height: 26px;
                 }
 
+                .content-title-project{
+                    display: flex;
+                    height: 100%;
+                    justify-content: space-between;
+                    flex-direction: column;
+                }
+
+                .all-projects-back{
+                    color: var(--primary);
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    text-align:end;
+                    padding-right:100px;
+                }
+
+                .work-title-project{
+                    margin-top:20px;
+                    font-weight: bold;
+                    margin-bottom: 0px !important;
+                    line-height: 1;
+                }
+
+                @media only screen and (min-width: 1500px) {
+                    .sectionTitleProject{
+                        height: 600px;
+                        padding-top:80px;
+                    }
+
+                    .work-title-project{
+                        color:var(--white);
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                        margin-top:24px;
+                    }
+                }
+
             `}
         />
-        <Row justify={'end'} gutter={[10,10]} className='section-proyects-work' style={{ marginTop:20 }} >
-            <Col span={21} className='sectionTitleProject' >
-                <p className='text_white font-18' style={{ marginLeft:'-25px' }}>
-                    Proyecto
-                </p>
-                <Text className='titleListHover  text_white font-xxl'>
-                    Kikert
-                </Text>
-                <p >
-                    <Text className='catLabelProjectDetails txt-white font-18'>
-                        Categoria
-                    </Text>
-                    <img src='/images/Arrow_right.png' className='arrowPrjectDetails' />
-                    <Text className='catProjectDetails txt-white font-18'>
-                        Desgign UIX/UI
-                    </Text>
-                </p>
+        <Row justify={'end'} gutter={[10,10]} className='' style={{ marginTop:20 }} >
+            <Col span={21} className='sectionTitleProject'>
+                <div className='content-title-project'>
+                    <div className='all-projects-back' >
+                        All proyects
+                    </div>
+                    <div className=''>
+                        <p className='text_white font-18'>
+                            Proyecto
+                        </p>
+                        <p className='work-title-project text_white font-xxl'>
+                            Kikert
+                        </p>
+                    </div>
+                    <p >
+                            <Text className='catLabelProjectDetails txt-white font-18'>
+                                Categoria
+                            </Text>
+                            <img src='/images/Arrow_right.png' className='arrowPrjectDetails' />
+                            <Text className='catProjectDetails txt-white font-18'>
+                                Desgign UIX/UI
+                            </Text>
+                        </p>
+                </div>
             </Col>
             <Col span={24}>
                 <img src={currentProject?.main_image} className='img-100' />
@@ -138,20 +185,9 @@ const ProjectDetails = () => {
                     </Col>
             }
             {/* Galeria de 3 */}
-            {
-                currentProject && currentProject.gallery2 &&
-                <Col span={24}>
-                    <Row gutter={[10,5]}>
-                        {
-                            currentProject?.gallery2.map((image, idx) => 
-                                (<Col xl={8} xs={24} md={8}>
-                                    <img src={image?.url} className='img-100' />
-                                </Col>)
-                            )
-                        }
-                    </Row>
-                </Col>
-            }
+            <Col span={24}>
+                <Carrousel gallery={currentProject?.gallery2} />
+            </Col>
             <ContactSection />
         </Row>
         

@@ -1,11 +1,37 @@
 import { Global, css } from '@emotion/react'
 import { Col, Row, Typography } from 'antd'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProjectItem from './ProjectItem'
 import {projects} from '../../libs/Projects'
+import { useSelector } from 'react-redux'
+import Slide from 'react-reveal/Slide';
+
 
 const ProjectList = () => {
     const { Title, Text } = Typography
+    const [projectsList, setProjectsList] = useState([])
+    const catWorkSelected = useSelector((state) => state.web.catWorkSelected)
+
+    useEffect(() => {
+        setProjectsList([])
+        setTimeout(() => {
+            if(catWorkSelected){
+                const list = projects.filter(item => {
+                    let find = item?.categories?.filter(cat => cat.code === catWorkSelected) 
+                    if( find?.length > 0){
+                        return item
+                    }
+                })
+                setProjectsList(list)
+              }else{
+                setProjectsList(projects)
+              }      
+        }, 10);
+        
+      
+    }, [catWorkSelected])
+    
+
     return (
         <>
             <Global 
@@ -20,27 +46,15 @@ const ProjectList = () => {
                 <Row justify={'end'} className='section-proyects-work' >
                     <Col span={21}>
                         {
-                            projects.map(item => 
-                                (<ProjectItem  nameProject={item.name} key_id={item.key} >
-                                    <img id="img_demo" src={item.main_image} style={{ width:400 }} />
-                                </ProjectItem>
+                            projectsList.map(item => 
+                                (<Slide left>
+                                    <ProjectItem  nameProject={item.name} key_id={item.key} >
+                                        <img id="img_demo" src={item.main_image} style={{ width:400 }} />
+                                    </ProjectItem>
+                                </Slide>
                                 )
                             )
-                        }
-
-                        
-                        {/* <ProjectItem  nameProject="ScanFix" key_id={'ScanFix'} >
-                            <img id="img_demo" src='/images/kikert_parallax.jpg' style={{ width:400 }} />
-                        </ProjectItem>
-                        <ProjectItem  nameProject="Kiimak" key_id={'Kiimak'} >
-                            <img id="img_demo" src='/images/kikert_parallax.jpg' style={{ width:400 }} />
-                        </ProjectItem>
-                        <ProjectItem  nameProject="Hesys" key_id={'hesys'} >
-                            <img id="img_demo" src='/images/kikert_parallax.jpg' style={{ width:400 }} />
-                        </ProjectItem>
-                        <ProjectItem  nameProject="Momoto" key_id={'momoto'} >
-                            <img id="img_demo" src='/images/kikert_parallax.jpg' style={{ width:400 }} />
-                        </ProjectItem> */}
+                        } 
                     </Col>
                 </Row>
         </>

@@ -9,7 +9,6 @@ import ProjectDetails from '../../components/work/ProjectDetails'
 const Project = () => {
   return (
     <MainLayout>
-        <Categories />
         <ProjectDetails />
     </MainLayout>
   )

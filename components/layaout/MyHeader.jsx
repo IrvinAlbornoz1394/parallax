@@ -3,7 +3,7 @@ import { Button, Layout, Menu, Typography } from 'antd'
 import { Global, css } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { gsap } from 'gsap';
-import { routerTransition } from '../../libs/functions'
+
 
 const MyHeader = () => {
     const hoverWork = useSelector((state) => state.web?.hoverWork)

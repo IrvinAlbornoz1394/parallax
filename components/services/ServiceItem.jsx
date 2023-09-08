@@ -18,13 +18,13 @@ const ServiceItem = ({nameService=null, key_id=null, children, ...props}) => {
         let hover_active = false;  
         for (const [key, value] of Object.entries(hoverServices)) {
             
-            if(value === true && key !== `show_${key_id}`){
+            if(value === true && key !== `${key_id}`){
                 hover_active = true;
             }
         }
         
         
-        if(hoverServices[`show_${key_id}`] == true){
+        if(hoverServices[`${key_id}`] == true){
             if(hover_active == false){
                 gsap.to(`div#card_${key_id}`, {duration: .6, scale: 1, opacity: 1, ease: "expoScale(1, 5)"});
                 gsap.to(`img#${key_id}`, {duration: .01, opacity: 1, ease: "expoScale(1, 5)"});
@@ -58,7 +58,7 @@ const ServiceItem = ({nameService=null, key_id=null, children, ...props}) => {
     }
 
   return (
-    <div id={`show_${key_id}`} className='hoverServices titleServicesContent' style={{ zIndex: 100-(1+props.idx) }} >
+    <div id={`${key_id}`} className='hoverServices titleServicesContent' style={{ zIndex: 100-(1+props.idx) }} >
         <p className='titleServices font-xxl' ref={ref} id={key_id}>
             {nameService}
         </p>

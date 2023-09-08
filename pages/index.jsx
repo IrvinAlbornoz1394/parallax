@@ -3,7 +3,7 @@ import { Col, Layout, Progress, Row, Typography } from 'antd'
 import { Global, css } from '@emotion/react';
 import { gsap } from 'gsap';
 import { Fade } from "react-awesome-reveal";
-import { SplitText } from '../libs/SplitText.min'
+/* import { SplitText } from '../libs/SplitText.min' */
 import { ScrollTrigger } from '../libs/ScrollTrigger.min'
 
 
@@ -45,7 +45,7 @@ const Index = () => {
         dispatch(loadServices())
     }, []);
 
-    useEffect(() => {
+    /* useEffect(() => {
 
         gsap.registerPlugin(ScrollTrigger, SplitText);
         //gsap.config({ trialWarn: false });
@@ -67,7 +67,7 @@ const Index = () => {
             linesClass: "lines"
         })
 
-        /* Opcion1 */
+        //Opcion1
         animation.from(split.words, {
             duration: 0.5,
             y: -100,
@@ -80,64 +80,7 @@ const Index = () => {
         });
 
 
-        /* Opcion2 */
-        /* animation.from(split.lines, {
-            duration: 0.5,
-            y: -100,
-            stagger: 0.010,
-            delay: .005,
-            stagger:{
-                from:"start", //try "center" and "edges"
-                each:0.5
-            }
-        }); */
-
-
-        /* split.lines.map(item => {
-            animation.set(item, { autoAlpha: 1 });
-            animation.from(item, {
-                y: -100,
-                ease: "power3.out",
-                delay: .1,
-                stagger: {
-                    amount: 1
-                }
-            })
-        }) */
-
-        
-
-        /* animation.from(split.lines, { 
-        opacity:0,
-        y:50,
-        ease:"back(4)",
-        stagger:{
-            from:"start", //try "center" and "edges"
-            each:0.05
-        }
-        }) */
-
-
-        
-
-        /* Bueno */
-        /* var tl = gsap.timeline(),
-        mySplitText = new SplitText("#textRevel", {
-            type: "lines, words",
-            linesClass: "line"
-        }),
-        words = mySplitText.words
-
-        tl.from(words, {
-            duration: 0.8,
-            opacity: 0,
-            yPercent: -150,
-            ease: "power4",
-            stagger: 0.02
-          }); */
-
-
-        }, []) 
+        }, [])  */
     
 
 
@@ -278,14 +221,13 @@ const Index = () => {
 
             `}
         />
-        <MainLayout>
+        <MainLayout arrowLeft={arrowLeft} arrowRight={arrowRight}>
+            <Loading />
             <MainFullScreen />
                 {
                     showCookies &&
                     <Cookies />
                 }
-                
-                <Demo refLef={arrowLeft} refRight={arrowRight} />
                 <div className='hfull' id="section_Home">
                     <Row justify={'center'}>
                         <Col span={ 20 }>   
@@ -322,7 +264,7 @@ const Index = () => {
                         </Col>
                     </Row>
                 </div>
-                <Crew  refLef={arrowLeft} refRight={arrowRight} />
+                <Crew refLef={arrowLeft} refRight={arrowRight} />
                 <SectionServices />
                 <Work />
                 <StartProject />

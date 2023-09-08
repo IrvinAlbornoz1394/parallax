@@ -1,5 +1,10 @@
 .body{
-    background: #000
+    background: #000;
+    position:relative;
+}
+
+.bodyLayaout{
+    min-height: 100vh;
 }
 
 .btn{
@@ -82,8 +87,8 @@
     line-height: 26px;
 }
 
-.font-30{
-    font-size: 30px;
+.font-24{
+    font-size: 24px;
 }
 
 .font-18{
@@ -92,4 +97,8 @@
 
 .font-xxl{
     font-size: 105px !important;
+}
+.my-auto{
+    margin-top: auto;
+    margin-bottom: auto;
 }

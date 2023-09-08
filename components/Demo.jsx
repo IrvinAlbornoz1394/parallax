@@ -2,12 +2,15 @@ import { Global, css } from '@emotion/react'
 import React, { useEffect } from 'react'
 import { gsap, selector } from 'gsap';
 import { useSelector, useDispatch } from 'react-redux'
-import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverActive, setHoverArrowLeft, setHoverArrowRight, setCursorPointer, updHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject } from '../redux/recuder_slices/webReducer'
+import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverActive, setHoverArrowLeft, setHoverArrowRight, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject } from '../redux/recuder_slices/webReducer'
 import { routerTransition } from '../libs/functions'
+import { useRouter } from 'next/router';
 
-const Demo = ({refLef, refRight, ...props}) => {
+
+const Demo = ({refLef = null, refRight = null, ...props}) => {
 
   const dispatch = useDispatch()
+  const route = useRouter()
 
   const hoverArrowL = useSelector((state) => state.web.hoverArrowL)
   const hoverArrowR = useSelector((state) => state.web.hoverArrowR)
@@ -58,6 +61,8 @@ const Demo = ({refLef, refRight, ...props}) => {
 
 
     validateHoverServices(e)
+
+    validateHoverProject(e)
 
     validateHoverMenu(e)
 
@@ -248,6 +253,29 @@ const Demo = ({refLef, refRight, ...props}) => {
   }
 
   /* Validar cada uno de los items de la lista de servicios del index */
+  const validateHoverItemProjects = (item, e) => {
+    /* Obtener las coordenadas   */
+    let coords_item = item.getBoundingClientRect()
+    let xminProjItem = coords_item.x
+    let xmaxProjItem = coords_item.x + coords_item.width + 10
+    let yminProjItem = coords_item.y -10
+    let ymaxProjItem = coords_item.y + coords_item.height +10
+    /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
+    if (yminProjItem < e.y && e.y < ymaxProjItem && e.x > xminProjItem ){
+      if(item.id){
+        dispatch(updHoverProject(item.id.replace("show_","")))
+      }
+      
+      mouseHover(true)
+      return true
+    } else if(yminProjItem > e.y || e.y > ymaxProjItem || e.x < xminProjItem) {
+      /* dispatch(updHoverServices({val: false, key: item.id.replace("show_","")})) */
+      return false
+    }
+  }
+  
+
+  /* Validar cada uno de los items de la lista de servicios del index */
   const validateHoverItemServices = (item, e) => {
     /* Obtener las coordenadas   */
     let coords_item = item.getBoundingClientRect()
@@ -257,31 +285,28 @@ const Demo = ({refLef, refRight, ...props}) => {
     let ymaxServItem = coords_item.y + coords_item.height +10
     /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
     if (yminServItem < e.y && e.y < ymaxServItem && e.x > xminServItem ){
-      if(item.id == "show_uxui"){
-        console.log('hoveeer')
+      if(item.id === "all"){
+        dispatch(clearHoverServices())
+      }else if(item.id){
+        dispatch(updHoverServices({val: true, key: item.id.replace("show_","") }))
       }
-      dispatch(updHoverServices({val: true, key: item.id}))
+      
       mouseHover(true)
       return true
     } else if(yminServItem > e.y || e.y > ymaxServItem || e.x < xminServItem) {
-      if(item.id == "show_uxui"){
-        if(yminServItem > e.y){
-          console.log('1')
-        }
-        if(e.y > ymaxServItem){
-          console.log('2')
-        }
-        if(e.x < xminServItem){
-          console.log('3')
-        }
-      }
-      
-      /* console.log('====')
-      console.log('e.x',e.x)
-      console.log('xminServItem',xminServItem)
-      console.log('1111') */
-      dispatch(updHoverServices({val: false, key: item.id}))
+      /* dispatch(updHoverServices({val: false, key: item.id.replace("show_","")})) */
       return false
+    }
+  }
+
+  /* Hover en la lista de servicios en /work */
+  const validateHoverProject = () => {
+    /* Obtenemos todos los proyectos */
+    let texts = document.getElementsByClassName("titleProjectsContent")
+    if(texts){
+      for (let item of texts) {
+        validateHoverItemProjects(item, e)
+      } 
     }
   }
 
@@ -455,26 +480,70 @@ const Demo = ({refLef, refRight, ...props}) => {
 }, [])
 
 
+const linkToWorkCategory = () => {
+  /* Validamos si estamos en la pantalla de work */
+  if(route.pathname === '/work'){
+    console.log('si')
+    /* Solo cambiados de categoria */
+    let catSelected = null
+    for (const [key, value] of Object.entries(hoverServices)) {
+      if(value == true){
+        catSelected = key
+        dispatch(setCatWorkSelected(key.replace("show_","")))
+      }
+    }
+    if(!catSelected){
+      dispatch(setCatWorkSelected(null))
+    }
+  }else{
+    console.log('no')
+    /* Si no, entonces hacemos el redirecto a work con la categoria seleccionada */
+    for (const [key, value] of Object.entries(hoverServices)) {
+      if(value == true){
+        const originalKey = key.replace("show_","")
+        routerTransition(() => {
+          route.push(`work#${originalKey}`) 
+          dispatch(updHoverServices({val: false, key: originalKey}))
+        })
+        /* let element = document.getElementById(`section_${key}`); */
+        //element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+        } 
+      }   
+  }
+  
+}
+
 
 /* Funcion para validar a que elemento se le esta dando click */
 const clickFunction = () => {
   /* Validar click para ocultar cookies */
+  linkToWorkCategory()
+
   if(hoverCookies){
     dispatch(setShowCookie(false))
   }
 
   /* Validar hover en la flecha izquierda del carrousel del crew */
   if(hoverArrowL){
-    refLef.current.click()
+    refLef?.current.click()
   }
   /* Validar hover en la flecha derecha del carrousel del crew */
   if(hoverArrowR){
-    refRight.current.click()
+    refRight?.current.click()
+  }
+
+  /* Validamos que este en la seccion de work */
+  if(hoverWorkSection){
+    console.log('hoverWorkSection',hoverWorkSection)
+    routerTransition(() => {
+        route.push(`work`) 
+      }
+    )
   }
 
   for (const [key, value] of Object.entries(hoverItemsMenu)) {
     if(value == true){  
-      routerTransition()
+      /* routerTransition() */
       let element = document.getElementById(`section_${key}`);
       /* element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"}); */
     }  

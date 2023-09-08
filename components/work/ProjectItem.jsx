@@ -59,12 +59,12 @@ const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
                 }
             `}
         />
-        <div className='hoverProjects' onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} >
+        <div className='hoverProjects titleProjectsContent' onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} >
             <Text className='titleListHover text_white font-xxl' ref={refNameProj}>
                 {nameProject}
             </Text>
             <img src='/images/Arrow_right.png' className='arrowServices' ref={refImgProj} />
-            <div className='contentCard' style={{  marginLeft: parseFloat(refImgProj?.current?.offsetWidth) + parseFloat(refNameProj?.current?.offsetWidth) + 100 }}>
+            <div className='contentCard' >
                 <div id={key_id} className='cardImgProject'>
                     {children}
                 </div>

@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { TimelineMax } from './TweenMax.min'
 
+
 export const convertToPlain = (html) => {
 
     // Create a new div element
@@ -35,10 +36,6 @@ export const animateFinal = () => {
     setTimeout(() => {
         gsap.to(".wrapper", { duration: .1, zIndex: '101' })
     }, 1500);
-    
-    
-    /* new TimelineMax({repeatDelay: 1}).to(".path", .25, {attr: { d: start }, ease: Power2.easeIn}) */
-    
 }
 
 export const animateFinal_final = () => {
@@ -50,9 +47,13 @@ export const animateFinal_final = () => {
     .to(".path", .5, {attr: { d: end }, ease: Power2.easeOut})    
 }
 
-export const routerTransition = () => {
-    gsap.to(".wrapper", { duration: .1, zIndex: '101' })
+export const transitionFinal = () => {
+    
+}
 
+export const routerTransition = (linkFuntion) => {
+    console.log('first')
+    gsap.to(".wrapper", { duration: .1, zIndex: '101' })
     setTimeout(() => {
         gsap.to(".wrapper", { duration: .25, opacity: .25, ease: "none" },)
         gsap.to(".wrapper", { duration: .25, opacity: .50, ease: "none" })
@@ -69,6 +70,7 @@ export const routerTransition = () => {
     }, 3500);
 
     setTimeout(() => {
+        linkFuntion()
         animateFinal();
     }, 4000);
 
