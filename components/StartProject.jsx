@@ -84,32 +84,31 @@ const StartProject = () => {
                 }
             `}
         />
-        <section id="section_ux_ui" className='hfull section_ux_ui' style={{ position:'relative' }}>
-        <section id="section_ux_ui" className='hfull section_ux_ui' style={{ position:'relative' }}>
-            <div id="scene" style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
-                <img  data-depth="1" id="img_effect" className="img_effect" className src='/images/uxui_sinbordes_1360x768.png' className='img_effect'
-                    style={{ width: '500px', margin: 'auto !important', textAlign: 'center' }}
-                 />
+            <section id="section_ux_ui" className='hfull section_ux_ui' style={{ position:'relative' }}>
+                <div id="scene" style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
+                    <img  data-depth="1" id="img_effect" className="img_effect" className src='/images/uxui_sinbordes_1360x768.png' className='img_effect'
+                        style={{ width: '500px', margin: 'auto !important', textAlign: 'center' }}
+                    />
+                </div>
+            <div style={{ position:'relative', width:'100%' }}>
+                <Row justify={'center'} >
+                    <Col span={20}>
+                        <Title className='txt-white titleStart title-que-podemos'> 
+                            ¿Qué podemos <br/>
+                            hacer por ti?
+                        </Title>
+                    </Col>
+                </Row>
+                <div className='overlay-btn'>
+                    <button className='btn-start-project' id="startProject">
+                        Start trip!
+                    </button>
+                </div>
+                {/* <img className='img-full-screen' src='/images/back_comenzar2.jpg' />
+                
+                */}
             </div>
-        <div style={{ position:'relative', width:'100%' }}>
-            <Row justify={'center'} >
-                <Col span={20}>
-                    <Title className='txt-white titleStart title-que-podemos'> 
-                        ¿Qué podemos <br/>
-                        hacer por ti?
-                    </Title>
-                </Col>
-            </Row>
-            <div className='overlay-btn'>
-                <button className='btn-start-project' id="startProject">
-                    Start trip!
-                </button>
-            </div>
-            {/* <img className='img-full-screen' src='/images/back_comenzar2.jpg' />
-            
-             */}
-        </div>
-        </section>
+            </section>
         </>
     )
 }

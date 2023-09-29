@@ -4,16 +4,13 @@ import { gsap, selector } from 'gsap';
 import { useSelector, useDispatch } from 'react-redux'
 import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo } from '../redux/recuder_slices/webReducer'
 import { routerTransition } from '../libs/functions'
-import { useRouter } from 'next/router';
 
 import { useRouter } from 'next/router';
 
 
-const Demo = ({refLef = null, refRight = null, ...props}) => {
 const Demo = ({refLef = null, refRight = null, ...props}) => {
 
   const dispatch = useDispatch()
-  const route = useRouter()
   const route = useRouter()
 
   const hoverArrowL = useSelector((state) => state.web.hoverArrowL)
@@ -70,7 +67,6 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
 
     validateHoverServices(e)
 
-    validateHoverProject(e)
 
     validateHoverProject(e)
 
@@ -342,7 +338,7 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
   }
 
   /* Hover en la lista de servicios en /work */
-  const validateHoverProject = (e) => {
+  const validateHoverProject_ = (e) => {
     /* Obtenemos todos los proyectos */
     let texts = document.getElementsByClassName("hoverProjects")
     if(texts){

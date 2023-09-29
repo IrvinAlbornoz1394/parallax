@@ -1,6 +1,5 @@
 import { Layout } from 'antd'
 import React, { useRef } from 'react'
-import React, { useRef } from 'react'
 import MyHeader from './MyHeader'
 import Footer from './footer/Footer'
 import Transition from './Transition'

@@ -48,7 +48,6 @@ const Index = () => {
     }, []);
 
     /* useEffect(() => {
-    /* useEffect(() => {
 
         gsap.registerPlugin(ScrollTrigger, SplitText);
         //gsap.config({ trialWarn: false });
@@ -82,9 +81,6 @@ const Index = () => {
                 each:0.011
             }
         });
-
-
-        }, [])  */
         }, [])  */
     
 

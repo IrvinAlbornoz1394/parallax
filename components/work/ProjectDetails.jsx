@@ -11,7 +11,6 @@ import dynamic from 'next/dynamic'
 import ContactSection from '../ContactSection'
 import VideoContent from './elements/VideoContent'
 import Carrousel from './elements/Carrousel'
-import Carrousel from './elements/Carrousel'
 const TextDescription = dynamic(() => import('../work/elements/TextDescription'),{
     ssr: false,
   })

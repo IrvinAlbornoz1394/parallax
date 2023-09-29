@@ -1,12 +1,8 @@
 import { Global, css } from '@emotion/react'
 import { Col, Row, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import React, { useEffect, useState } from 'react'
 import ProjectItem from './ProjectItem'
 import {projects} from '../../libs/Projects'
-import { useSelector } from 'react-redux'
-import Slide from 'react-reveal/Slide';
-
 import { useSelector } from 'react-redux'
 import Slide from 'react-reveal/Slide';
 
@@ -52,15 +48,6 @@ const ProjectList = () => {
                 <Row justify={'end'} className='section-proyects-work' >
                     <Col span={21}>
                         {
-                            projectsList.map(item => 
-                                (<Slide left>
-                                    <ProjectItem  nameProject={item.name} key_id={item.key} >
-                                        <img id="img_demo" src={item.main_image} style={{ width:400 }} />
-                                    </ProjectItem>
-                                </Slide>
-                                )
-                            )
-                        } 
                             projectsList.map(item => 
                                 (<Slide left>
                                     <ProjectItem  nameProject={item.name} key_id={item.key} >
