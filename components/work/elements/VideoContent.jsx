@@ -1,8 +1,6 @@
 import { Global, css } from '@emotion/react'
 import { Col, Typography } from 'antd'
 import React, { useState } from 'react'
-import { Col, Typography } from 'antd'
-import React, { useState } from 'react'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
 
