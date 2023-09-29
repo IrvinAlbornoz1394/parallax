@@ -18,7 +18,7 @@ const MainLayout = ({ style=null, ...props}) => {
             {
                 showLoading && <Loading />
             }
-            {/* <Demo refLef={props?.arrowLeft} refRight={props?.arrowRight} /> */}
+            <Demo refLef={props?.arrowLeft} refRight={props?.arrowRight} />
             <MyHeader />
             <Content className='body'>          
                 {props.children}
