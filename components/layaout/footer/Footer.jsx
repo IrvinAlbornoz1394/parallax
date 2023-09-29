@@ -21,6 +21,11 @@ const Footer = () => {
           .mb-50{
             margin-bottom:50px;
           }
+          .row_footer{
+            width:100%;
+            position: absolute;
+            bottom: 0;
+          }
         `}
       />
         <Row justify={'center'} className='row_footer'>

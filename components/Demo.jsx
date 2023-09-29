@@ -2,12 +2,15 @@ import { Global, css } from '@emotion/react'
 import React, { useEffect } from 'react'
 import { gsap, selector } from 'gsap';
 import { useSelector, useDispatch } from 'react-redux'
-import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverActive, setHoverArrowLeft, setHoverArrowRight, setCursorPointer, updHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject } from '../redux/recuder_slices/webReducer'
+import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo } from '../redux/recuder_slices/webReducer'
 import { routerTransition } from '../libs/functions'
+import { useRouter } from 'next/router';
 
-const Demo = ({refLef, refRight, ...props}) => {
+
+const Demo = ({refLef = null, refRight = null, ...props}) => {
 
   const dispatch = useDispatch()
+  const route = useRouter()
 
   const hoverArrowL = useSelector((state) => state.web.hoverArrowL)
   const hoverArrowR = useSelector((state) => state.web.hoverArrowR)
@@ -23,14 +26,18 @@ const Demo = ({refLef, refRight, ...props}) => {
   const hoverCookies = useSelector((state) => state.web?.hoverCookies)
   const hoverWorkSection = useSelector((state) => state?.web?.hoverWorkSection)
   const hoverStartProject = useSelector((state) => state?.web?.hoverStartProject)
+  const hoverProjects = useSelector((state) => state.web?.hoverProjects)
+  const hoverAllProjects = useSelector((state) => state.web?.hoverAllProjects)
+  const hoverPlay = useSelector((state) => state.web?.hoverPlay)
+  const hoverCloseVideo = useSelector((state) => state.web?.hoverCloseVideo)
+
+  
 
   useEffect(() => {
     document.addEventListener('mousemove', onMouseMove);
   }, [])
 
-  /* useEffect(() => {
-    console.log('hoverServices',hoverServices)
-  }, [hoverServices]) */
+  
   
 
 
@@ -41,7 +48,7 @@ const Demo = ({refLef, refRight, ...props}) => {
 
   const hoverFn = (e) => {
     /* Obtener coordenadas del boton work */
-    if(validateHoverWork(e) || validateHoverNvoProj(e) || validateHoverNvoProjHeader(e) || validateHoverStartProject(e) ){
+    if(validateAllProjects(e) || validateHoverWork(e) || validateHoverNvoProj(e) || validateHoverNvoProjHeader(e) || validateHoverStartProject(e) || validatePlayHover(e) || validateHoverCloseVideo(e) ){
       /* setHoverActive(true) */
       mouseHover(true)
     }else{
@@ -59,9 +66,17 @@ const Demo = ({refLef, refRight, ...props}) => {
 
     validateHoverServices(e)
 
+    validateHoverProject(e)
+
     validateHoverMenu(e)
 
-    validateHoverCrew(e)
+
+    
+
+    if(window.location.pathname === `/`){
+      
+      validateHoverCrew(e)
+    }
 
     if(validateHoverWorkSection(e)){
       mouseHover(true)
@@ -239,6 +254,7 @@ const Demo = ({refLef, refRight, ...props}) => {
 
       if (xminSectionWork < e.x && e.x < xmaxSectionWork && yminSectionWork < e.y && e.y < ymaxSectionWork){
         dispatch(setHoverSectionWork(true))
+        dispatch(setHoverWork(false))
         return true
       } else if(xminSectionWork > e.x || e.x > xmaxSectionWork || yminSectionWork > e.y || e.y > ymaxSectionWork) {
         dispatch(setHoverSectionWork(false))
@@ -246,6 +262,45 @@ const Demo = ({refLef, refRight, ...props}) => {
       }
     }
   }
+
+  const validHover = (prevState, newState) => {
+    if(prevState && newState){
+      if(prevState !== newState){
+        dispatch(updHoverProject(newState.replace("show_","")))
+      }
+    }else if(!prevState && newState){
+    dispatch(updHoverProject(newState.replace("show_","")))
+    }else if(prevState && !newState ){
+      dispatch(updHoverProject(newState.replace(null)))
+    }
+  }
+
+  const validHoverServices = (prevState, newState) => {
+    if(prevState[newState] == false){
+      dispatch(updHoverServices({val: true, key: newState }))
+    }
+  }
+
+  /* Validar cada uno de los items de la lista de servicios del index */
+  const validateHoverItemProjects = (item, e) => {
+    /* Obtener las coordenadas   */
+    let coords_item = item.getBoundingClientRect()
+    let xminProjItem = coords_item.x
+    let xmaxProjItem = coords_item.x + coords_item.width + 10
+    let yminProjItem = coords_item.y -10
+    let ymaxProjItem = coords_item.y + coords_item.height +10
+    /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
+    if (yminProjItem < e.y && e.y < ymaxProjItem && e.x > xminProjItem){
+      if(item.id){
+        validHover(hoverProjects, item.id)
+      }
+      mouseHover(true)
+      return true
+    } else if((yminProjItem > e.y || e.y > ymaxProjItem || e.x < xminProjItem) && (item.id === "show_"+hoverProjects) ) {
+      return false
+    }
+  }
+  
 
   /* Validar cada uno de los items de la lista de servicios del index */
   const validateHoverItemServices = (item, e) => {
@@ -257,31 +312,43 @@ const Demo = ({refLef, refRight, ...props}) => {
     let ymaxServItem = coords_item.y + coords_item.height +10
     /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
     if (yminServItem < e.y && e.y < ymaxServItem && e.x > xminServItem ){
-      if(item.id == "show_uxui"){
-        console.log('hoveeer')
+      if(item.id === "all"){
+        dispatch(clearHoverServices())
+      }else if(item.id){
+        validHoverServices(hoverServices, item.id)
       }
-      dispatch(updHoverServices({val: true, key: item.id}))
       mouseHover(true)
       return true
-    } else if(yminServItem > e.y || e.y > ymaxServItem || e.x < xminServItem) {
-      if(item.id == "show_uxui"){
-        if(yminServItem > e.y){
-          console.log('1')
-        }
-        if(e.y > ymaxServItem){
-          console.log('2')
-        }
-        if(e.x < xminServItem){
-          console.log('3')
+    } else if((yminServItem > e.y || e.y > ymaxServItem || e.x < xminServItem)) {
+      /* dispatch(clearHoverServices()) */
+      return false
+    }
+  }
+
+  const validHoverExist = () => {
+    let exist = false
+    for (const [key, value] of Object.entries(hoverServices)) {
+      if(value == true){
+        exist = true
+      }
+    }
+    return exist
+  }
+
+  /* Hover en la lista de servicios en /work */
+  const validateHoverProject = (e) => {
+    /* Obtenemos todos los proyectos */
+    let texts = document.getElementsByClassName("hoverProjects")
+    if(texts){
+      let leave_hover = true
+      for (let item of texts) {
+        if (validateHoverItemProjects(item, e)){
+          leave_hover = false
         }
       }
-      
-      /* console.log('====')
-      console.log('e.x',e.x)
-      console.log('xminServItem',xminServItem)
-      console.log('1111') */
-      dispatch(updHoverServices({val: false, key: item.id}))
-      return false
+      if(leave_hover){
+        dispatch(updHoverProject(""))
+      }
     }
   }
 
@@ -326,7 +393,7 @@ const Demo = ({refLef, refRight, ...props}) => {
     /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
     if ( xminMenuItem < e.x && xmaxMenuItem > e.x && yminMenuItem < e.y && e.y < ymaxMenuItem && hoverItemsMenu[item.id] == false){
       dispatch(updHoverMenu({val: true, key: item.id}))
-      mouseHover(true, false)
+      mouseHover(true)
       return true
     } else if(xminMenuItem > e.x || xmaxMenuItem < e.x || yminMenuItem > e.y || e.y > ymaxMenuItem) {
       dispatch(updHoverMenu({val: false, key: item.id}))
@@ -383,8 +450,6 @@ const Demo = ({refLef, refRight, ...props}) => {
     }
   }
 
-
-
   const mouseHover = (flag, mouseEffect=true) => {
     dispatch(setHoverActive(flag))
     dispatch(setCursorPointer(flag))
@@ -399,7 +464,50 @@ const Demo = ({refLef, refRight, ...props}) => {
     }
   }
 
-  /*  */
+  /* Validar hover en el icono de play del video */
+  const validatePlayHover = (e) => {
+    /* Obtenemos coordenadas del boton nuevo proyecto */
+    let ok_cookies = document.getElementById("playPng")
+    if(ok_cookies){
+      let coords_ok_cookies = ok_cookies.getBoundingClientRect();
+
+      let xminCookies = coords_ok_cookies.x - 10
+      let xmaxCookies = coords_ok_cookies.x + coords_ok_cookies.width + 10
+      let yminCookies = coords_ok_cookies.y -10
+      let ymaxCookies = coords_ok_cookies.y + coords_ok_cookies.height +10
+
+      if (xminCookies < e.x && e.x < xmaxCookies && yminCookies < e.y && e.y < ymaxCookies && !hoverPlay){
+        dispatch(setHoverPlay(true))
+        return true
+      } else if(xminCookies > e.x || e.x > xmaxCookies || yminCookies > e.y || e.y > ymaxCookies && hoverPlay) {
+        dispatch(setHoverPlay(false))
+        return false
+      }
+    }
+  }
+
+
+  /* Validar hover en el texto para cerrar */
+  const validateHoverCloseVideo = (e) => {
+    /* Obtenemos coordenadas del boton nuevo proyecto */
+    let ok_cookies = document.getElementById("closeVideo")
+    if(ok_cookies){
+      let coords_ok_cookies = ok_cookies.getBoundingClientRect();
+
+      let xminCookies = coords_ok_cookies.x - 10
+      let xmaxCookies = coords_ok_cookies.x + coords_ok_cookies.width + 10
+      let yminCookies = coords_ok_cookies.y -10
+      let ymaxCookies = coords_ok_cookies.y + coords_ok_cookies.height +10
+
+      if (xminCookies < e.x && e.x < xmaxCookies && yminCookies < e.y && e.y < ymaxCookies && !hoverCloseVideo){
+        dispatch(setHoverCloseVideo(true))
+        return true
+      } else if(xminCookies > e.x || e.x > xmaxCookies || yminCookies > e.y || e.y > ymaxCookies && hoverCloseVideo) {
+        dispatch(setHoverCloseVideo(false))
+        return false
+      }
+    }
+  }
 
   useEffect(() => {
     gsap.set(".ball", {xPercent: -50, yPercent: -50});
@@ -455,33 +563,229 @@ const Demo = ({refLef, refRight, ...props}) => {
 }, [])
 
 
+const validateHoverInMenu = () => {
+  let overExist = false
+  for (const [key, value] of Object.entries(hoverItemsMenu)) {
+    if(value == true){
+      overExist = true
+    }
+  }
+  return overExist
+}
+
+
+const linkToWorkCategory = () => {
+
+  /* validamos si hay algun otro focus */
+  if(validateHoverInMenu()){
+
+    return
+  }
+
+  /* Validamos si estamos en la pantalla de work */
+  if(route.pathname === '/work'){
+    /* Solo cambiados de categoria */
+    let catSelected = null
+    for (const [key, value] of Object.entries(hoverServices)) {
+      if(value == true){
+        catSelected = key
+        dispatch(setCatWorkSelected(key.replace("show_","")))
+      }
+    }
+    if(!catSelected){
+      dispatch(setCatWorkSelected(null))
+    }
+  }else{
+    /* Si no, entonces hacemos el redirecto a work con la categoria seleccionada */
+    for (const [key, value] of Object.entries(hoverServices)) {
+      if(value == true){
+        const originalKey = key.replace("show_","")
+        routerTransition(() => {
+          route.push(`work#${originalKey}`) 
+          dispatch(updHoverServices({val: false, key: originalKey}))
+        })
+        /* let element = document.getElementById(`section_${key}`); */
+        //element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+        } 
+      }   
+  }
+  
+}
+
+const linkToWorkPage = () => {
+
+  for (const [key, value] of Object.entries(hoverItemsMenu)) {
+    let menuActive = false
+    if(value == true){  
+      menuActive = true
+    }  
+  }
+  
+  if(!menu){
+    routerTransition(() => {
+      route.push(`work`) 
+    }
+  )
+  }
+}
+
 
 /* Funcion para validar a que elemento se le esta dando click */
 const clickFunction = () => {
-  /* Validar click para ocultar cookies */
+
+
+  /* Validar click sobre el menu superior */
+  linkToSection()
+
+  
+  linkToWorkCategory()
+
+  /* Link to Work by Button */
+  if(hoverWork){
+    if(validateHoverInMenu()){
+      return
+    }
+    const element = document.getElementById(`section_Work`);
+    element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    return
+  }
+
+  /* Click para abrir el modal del video */
+  if(hoverPlay){
+    dispatch(setOpenVideo(true))
+    
+  }
+
+  if(hoverCloseVideo){
+    dispatch(setOpenVideo(false))
+  }
+
+  
+
+  /* Link to start trip */
+  if(hoverNvoProject || hoverNvoProjectHeader){
+    if(validateHoverInMenu()){
+      return
+    }
+
+    const element = document.getElementById(`section_ux_ui`);
+    element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    return
+  }
+  /*  */
+
   if(hoverCookies){
     dispatch(setShowCookie(false))
   }
 
   /* Validar hover en la flecha izquierda del carrousel del crew */
   if(hoverArrowL){
-    refLef.current.click()
+    refLef?.current.click()
   }
   /* Validar hover en la flecha derecha del carrousel del crew */
   if(hoverArrowR){
-    refRight.current.click()
+    refRight?.current.click()
+  }
+
+  /* Validamos que este en la seccion de work */
+  if(hoverWorkSection){
+    let hoverMenu = false
+    for (const [key, value] of Object.entries(hoverItemsMenu)) {
+      if(value == true){  
+        hoverMenu = true
+      } 
+    }
+    if(!hoverMenu){
+      routerTransition(() => {
+        route.push(`work`) 
+      }
+    )
+    }
   }
 
   for (const [key, value] of Object.entries(hoverItemsMenu)) {
     if(value == true){  
-      routerTransition()
+      /* routerTransition() */
       let element = document.getElementById(`section_${key}`);
       /* element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"}); */
     }  
-}
-  
+  }
+
+  /* Validamos si dio click en algun proyecto */
+  if(hoverProjects){
+      routerTransition(() => {
+        route.push(`work/${hoverProjects}`)
+      }
+    ) 
+  }
+
+  if(hoverAllProjects){
+    routerTransition(() => {
+      route.push(`/work/#`)
+    })
+  }
 
 }
+
+  const linkToSection = () => {
+    
+    /* hoverItemsMenu -> Variable a validar */
+    if(route.pathname !== `/`){
+      for (const [key, value] of Object.entries(hoverItemsMenu)) {
+        if(value == true){  
+          routerTransition(() => {
+            route.push(`/#section_${key}`) 
+          })
+        }  
+      }
+    }else{
+      for (const [key, value] of Object.entries(hoverItemsMenu)) {
+        if(value == true){  
+          const element = document.getElementById(`section_${key}`);
+          element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+            /* gsap.to(`span#line_${key}`, {duration: "0.3", transform: "scaleX(1)"}); */
+        }  
+    }
+      /* if(e.key == '0'){
+        element = document.getElementById("section_experience");
+      }else if(e.key == '1'){
+          element = document.getElementById("section_crew");
+      }else if(e.key == '2'){
+          element = document.getElementById("section_services")
+      }else if (e.key == '3'){
+          element = document.getElementById("section_work")
+      }else if (e.key == '4'){
+          element = document.getElementById("section_ux_ui")
+      }
+      if (element){
+          
+      } */
+    }
+  }
+
+
+  /* Projectos */
+  const validateAllProjects = (e) => {
+    /* Obtenemos coordenadas del boton nuevo proyecto */
+    let linkAllProjects = document.getElementById("all-projects-back")
+    if(linkAllProjects){
+      let link = linkAllProjects.getBoundingClientRect();
+
+      let xminLink = link.x
+      let xmaxLink = link.x + link.width
+      let yminLink = link.y 
+      let ymaxLink = link.y + link.height
+
+      if (xminLink < e.x && e.x < xmaxLink && yminLink < e.y && e.y < ymaxLink && !hoverAllProjects){
+        dispatch(setHoverAllProjects(true))
+        return true
+      } else if((xminLink > e.x || e.x > xmaxLink || yminLink > e.y || e.y > ymaxLink)){
+        dispatch(setHoverAllProjects(false))
+        return false
+      }
+    }
+  }
+
 
   /*  */
   return (
@@ -507,7 +811,7 @@ const clickFunction = () => {
           left: 0;
           border-radius: 100%;
           background-color: white;
-          z-index:100;
+          z-index:102;
           mix-blend-mode: difference;
           }
         `} 

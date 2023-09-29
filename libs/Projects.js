@@ -5,10 +5,11 @@ export const projects = [
         key: 'kikert',
         main_image: '/images/kikert_parallax.jpg',
         description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
-        category: {
+        categories: [{
             id: 1,
-            name: 'Design UX/UI'
-        },
+            name: 'Design UX/UI',
+            code: 'uxui'
+        }],
         gallery1: [
             {
                 id: 1,
@@ -36,12 +37,27 @@ export const projects = [
                 id: 3,
                 name: 'photo1',
                 url: '/images/work/kikert/k3.jpg',
+            },
+            {
+                id: 4,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 5,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 6,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
             }
         ],
         video:{
             id:1,
             name: 'video1',
-            preview: '/images/work/kikert/kikert_parallax3.jpg',
+            preview: '/images/work/kikert/kikert_parallax_blurred.png',
             url: 'http://youtube.com'
         },
         imgFullScreen:{
@@ -55,24 +71,268 @@ export const projects = [
         name: 'ScanFix',
         key: 'scanfix',
         main_image: '/images/kikert_parallax.jpg',
+        description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
+        categories: [{
+            id: 1,
+            name: 'Design UX/UI',
+            code: 'uxui'
+        }],
+        gallery1: [
+            {
+                id: 1,
+                name: 'photo1',
+                url: '/images/work/kikert/p1.jpg'
+            },
+            {
+                id: 2,
+                name: 'photo1',
+                url: '/images/work/kikert/p2.jpg'
+            }
+        ],
+        gallery2: [
+            {
+                id: 1,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 2,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 3,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            },
+            {
+                id: 4,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 5,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 6,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            }
+        ],
+        video:{
+            id:1,
+            name: 'video1',
+            preview: '/images/work/kikert/kikert_parallax_blurred.png',
+            url: 'http://youtube.com'
+        },
+        imgFullScreen:{
+            id:1,
+            name: 'video1',
+            url: '/images/work/kikert/kikert_parallax2.jpg',
+        }
     },
     {
         id: 3,
         name: 'Kiimak',
         key: 'kiimak',
         main_image: '/images/kikert_parallax.jpg',
+        description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
+        categories: [{
+            id: 1,
+            name: 'Design UX/UI',
+            code: 'uxui'
+        }],
+        gallery1: [
+            {
+                id: 1,
+                name: 'photo1',
+                url: '/images/work/kikert/p1.jpg'
+            },
+            {
+                id: 2,
+                name: 'photo1',
+                url: '/images/work/kikert/p2.jpg'
+            }
+        ],
+        gallery2: [
+            {
+                id: 1,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 2,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 3,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            },
+            {
+                id: 4,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 5,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 6,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            }
+        ],
+        video:{
+            id:1,
+            name: 'video1',
+            preview: '/images/work/kikert/kikert_parallax_blurred.png',
+            url: 'http://youtube.com'
+        },
+        imgFullScreen:{
+            id:1,
+            name: 'video1',
+            url: '/images/work/kikert/kikert_parallax2.jpg',
+        }
     },
     {
         id: 4,
         name: 'Hesys',
         key: 'hesys',
         main_image: '/images/kikert_parallax.jpg',
+        description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
+        categories: [{
+            id: 1,
+            name: 'Design UX/UI',
+            code: 'uxui'
+        }],
+        gallery1: [
+            {
+                id: 1,
+                name: 'photo1',
+                url: '/images/work/kikert/p1.jpg'
+            },
+            {
+                id: 2,
+                name: 'photo1',
+                url: '/images/work/kikert/p2.jpg'
+            }
+        ],
+        gallery2: [
+            {
+                id: 1,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 2,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 3,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            },
+            {
+                id: 4,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 5,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 6,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            }
+        ],
+        video:{
+            id:1,
+            name: 'video1',
+            preview: '/images/work/kikert/kikert_parallax_blurred.png',
+            url: 'http://youtube.com'
+        },
+        imgFullScreen:{
+            id:1,
+            name: 'video1',
+            url: '/images/work/kikert/kikert_parallax2.jpg',
+        }
     },
     {
         id: 5,
         name: 'Momoto',
         key: 'momoto',
         main_image: '/images/kikert_parallax.jpg',
+        description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
+        categories: [{
+            id: 1,
+            name: 'Design UX/UI',
+            code: 'uxui'
+        }],
+        gallery1: [
+            {
+                id: 1,
+                name: 'photo1',
+                url: '/images/work/kikert/p1.jpg'
+            },
+            {
+                id: 2,
+                name: 'photo1',
+                url: '/images/work/kikert/p2.jpg'
+            }
+        ],
+        gallery2: [
+            {
+                id: 1,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 2,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 3,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            },
+            {
+                id: 4,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 5,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 6,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            }
+        ],
+        video:{
+            id:1,
+            name: 'video1',
+            preview: '/images/work/kikert/kikert_parallax_blurred.png',
+            url: 'http://youtube.com'
+        },
+        imgFullScreen:{
+            id:1,
+            name: 'video1',
+            url: '/images/work/kikert/kikert_parallax2.jpg',
+        }
     },
 
 ]

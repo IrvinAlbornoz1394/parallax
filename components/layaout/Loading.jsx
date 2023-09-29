@@ -1,16 +1,18 @@
 import { Typography, Progress } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { gsap } from 'gsap';
 import { Global, css } from '@emotion/react';
+import { setShowLoading } from '@/redux/recuder_slices/webReducer';
 
 const Loading = () => {
     /* Ant */
     const { Title, Text } = Typography
+    const dispatch = useDispatch()
 
     /* Estatos locales */
     const [uploadOrDownloadCount, setUploadOrDownloadCount] = useState(10);
-    
+    const showLoading = useSelector((state) => state.web.showLoading)
     /* Redux */
     const services = useSelector((state) => state.web?.services)
 
@@ -30,15 +32,19 @@ const Loading = () => {
         const timer = setTimeout(() => {
             entranceAnimation()
         }, 2800);
+
+        const timer2 = setTimeout(() => {
+            dispatch(setShowLoading(false))
+        }, 5000);
+        
         return () => clearTimeout(timer);
+
     }, [])
 
     const entranceAnimation = () => {
         gsap.to(`#title-loading`, {duration: .6, opacity: 0, yPercent: -100});
         gsap.to(`#textPercent`, {duration: .6, opacity: 0, yPercent: -100});
         gsap.to(`#progressbar`, {duration: .6, opacity: 0, yPercent: -100});
-        
-
         const tl = gsap.timeline();
         tl.to(
             ".loading-div",
@@ -48,7 +54,7 @@ const Loading = () => {
               ease: "power4.inOut"
             },
             0
-          )
+        )
     };
 
     return (
@@ -81,7 +87,6 @@ const Loading = () => {
                     <Progress
                         id="progressbar"
                         percent={uploadOrDownloadCount}
-                        strokeWidth={1}
                         showInfo={false}
                         strokeColor={'#F3FF6D'}
                     />

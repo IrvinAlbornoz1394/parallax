@@ -43,7 +43,7 @@ const MainFullScreen = () => {
           background-color: ${ hoverWork == true ? "white" : "black" };
           border-radius: 3px;
           border: solid 2px #FFFFFF;
-          color: ${hoverWork == true ? "#00000" : "#FFFFFF"};
+          color: ${hoverWork == true ? "black" : "white"};
           width: 218px;
           height: 54px;
           cursor: pointer;

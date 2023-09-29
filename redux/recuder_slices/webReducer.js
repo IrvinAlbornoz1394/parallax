@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const webSlice = createSlice({
   name: 'webReducer',
   initialState: {
+    showLoading: true,
     value: 0,
     hoverWork: false,
     hoverActive: false,
@@ -20,6 +21,12 @@ export const webSlice = createSlice({
     services: [],
     showCookies: true,
     hoverWorkSection: false,
+    catWorkSelected: null,
+    hoverProjects: null,
+    hoverAllProjects: false,
+    hoverPlay: false,
+    openVideo: false,
+    hoverCloseVideo: false,
     hoverServices: {
       'uxui': false,
       'brand': false,
@@ -73,8 +80,27 @@ export const webSlice = createSlice({
     
       state.services = servicesList
     },
+    updHoverProject: (state, action) => {
+      state.hoverProjects = action.payload
+    },
     updHoverServices: (state, action) => {
-      let newServiceHoverState = {...state.hoverServices, [action.payload.key]: action.payload.val }
+      let newServiceHoverState = {...state.hoverServices}
+      for (const [key, value] of Object.entries(newServiceHoverState)) {
+        if(key === action.payload.key){
+          newServiceHoverState[key] = action.payload.val
+        }else{
+          newServiceHoverState[key] = false
+        }
+      }
+      /* let newServiceHoverState = {...state.hoverServices, [action.payload.key]: action.payload.val }
+      state.hoverServices = newServiceHoverState */
+      state.hoverServices = newServiceHoverState
+    },
+    clearHoverServices: (state, action) => {
+      let newServiceHoverState = {...state.hoverServices}
+      for (const [key, value] of Object.entries(newServiceHoverState)) {
+          newServiceHoverState[key] = false
+      }
       state.hoverServices = newServiceHoverState
     },
     updHoverLinks: (state, action) => {
@@ -122,6 +148,24 @@ export const webSlice = createSlice({
     setShowCookie: (state, action) => {
       state.showCookies = action.payload
     },
+    setCatWorkSelected: (state, action) => {
+      state.catWorkSelected = action.payload
+    },
+    setShowLoading: (state, action) => {
+      state.showLoading = action.payload
+    },
+    setHoverAllProjects: (state, action) =>{
+      state.hoverAllProjects = action.payload
+    },
+    setHoverPlay: (state, action) =>{
+      state.hoverPlay = action.payload
+    },
+    setOpenVideo: (state, action) =>{
+      state.openVideo = action.payload
+    },
+    setHoverCloseVideo: (state, action) =>{
+      state.hoverCloseVideo = action.payload
+    },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
@@ -153,11 +197,19 @@ export const {
           setHoverStartProject,
           loadServices,
           updHoverServices,
+          clearHoverServices,
           updHoverLinks,
           updHoverMenu,
           updHoverCrew,
           setHoverCookies,
-          setShowCookie
+          setShowCookie,
+          setCatWorkSelected,
+          updHoverProject,
+          setShowLoading,
+          setHoverAllProjects,
+          setHoverPlay,
+          setOpenVideo,
+          setHoverCloseVideo
         } = webSlice.actions
 
 export default webSlice.reducer

@@ -3,7 +3,7 @@ import { Button, Layout, Menu, Typography } from 'antd'
 import { Global, css } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { gsap } from 'gsap';
-import { routerTransition } from '../../libs/functions'
+
 
 const MyHeader = () => {
     const hoverWork = useSelector((state) => state.web?.hoverWork)
@@ -37,7 +37,7 @@ const MyHeader = () => {
       }));
 
 
-    const linkToSection = (e) => {
+    /* const linkToSection = (e) => {
         let element = null
         if(e.key == '0'){
             element = document.getElementById("section_experience");
@@ -53,7 +53,7 @@ const MyHeader = () => {
         if (element){
             element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
         }
-    }
+    } */
 
     
     return (
@@ -121,7 +121,7 @@ const MyHeader = () => {
                 <div style={{ flex: 1, display:'flex' }}>
                     <img src='/images/parallax_icon.svg' style={{ width:45, marginBottom:'auto', marginTop:'auto' }} />
                 </div>
-                <Menu  onClick={(e) => linkToSection(e)} className='mainMenu' mode="horizontal" items={items1}/>
+                <Menu className='mainMenu' mode="horizontal" items={items1}/>
                 <div style={{ flex: 1, display:'flex', justifyContent:'end' }}>
                     <button id="btn_nvo_project_header" className='btn btn_new_proyect_header font-18' style={{ marginTop:'auto', marginBottom:'auto' }}>Start trip!</button>
                 </div>

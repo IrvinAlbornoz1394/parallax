@@ -2,6 +2,8 @@ import { Global, css } from '@emotion/react';
 import { Typography } from 'antd'
 import React, { useRef, useLayoutEffect, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
+import { useSelector } from 'react-redux';
+import Slide from 'react-reveal/Slide';
 
 
 const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
@@ -10,9 +12,32 @@ const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
     const refNameProj = useRef(null);
     const refImgProj = useRef(null);
 
+    const hoverProjects = useSelector((state) => state.web?.hoverProjects)
+
     useEffect(() => {
+        let texts = document.getElementsByClassName("hoverProjects")
+        for (let item of texts) {
+            if (`show_${hoverProjects}` === item.id ){
+                var element = document.getElementById(item.id);
+                element.focus()
+                gsap.to(`#card_${item.id}`, {
+                    duration: .6, scale: 1, opacity: 1, ease: "expoScale(1, 5)"
+                });
+            }else{
+                var element = document.getElementById(item.id);
+                element.blur()
+                /*   */
+                gsap.to(`#card_${item.id}`, {duration: .6, scale: 0.5, opacity: 0, ease: "expoScale(1, 5)"});
+            }
+        } 
+
+    }, [hoverProjects])
+    
+    
+
+    /* useEffect(() => {
         gsap.to(`#${key_id}`, {duration: .6, scale: 0.5, opacity: 0, ease: "expoScale(1, 5)"});
-    }, [])
+    }, []) */
 
     const showCard = () => {
         gsap.to(`#${key_id}`, {
@@ -46,10 +71,20 @@ const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
                     position:relative;
                 }
 
-                .hoverProjects:hover .arrowServices,{
+                .hoverProjects:focus .arrowServices{
                     opacity: 1;
                     visibility: visible;
                 }
+
+                .hoverProjects:focus .cardImgProject{
+                    opacity: 1;
+                    visibility: visible;
+                    duration: .6, 
+                    scale: 1;
+                    opacity: 1;
+                    ease: "expoScale(1, 5);
+                }
+                
                 
                 .cardImgProject{
                     padding:20px;
@@ -57,16 +92,22 @@ const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
                     top: -25px;
                     opacity: 0; 
                 }
+
+                .hoverProjects:focus{
+                    outline: none;
+                }
             `}
         />
-        <div className='hoverProjects' onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} >
+        <div id={`show_${key_id}`} tabIndex={-1} className='hoverProjects titleProjectsContent' /* onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} */ >
             <Text className='titleListHover text_white font-xxl' ref={refNameProj}>
                 {nameProject}
             </Text>
-            <img src='/images/Arrow_right.png' className='arrowServices' ref={refImgProj} />
-            <div className='contentCard' style={{  marginLeft: parseFloat(refImgProj?.current?.offsetWidth) + parseFloat(refNameProj?.current?.offsetWidth) + 100 }}>
-                <div id={key_id} className='cardImgProject'>
+            <img src='/images/Arrow_right.png' className='arrowServices'  />
+            <div className='contentCard' id={`card_show_${key_id}`}>
+                <div  className='cardImgProject'>
+                    <Slide left>
                     {children}
+                    </Slide>
                 </div>
             </div>
         </div>

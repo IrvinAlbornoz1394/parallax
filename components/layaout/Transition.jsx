@@ -41,7 +41,7 @@ const Transition = () => {
                     height: 100vh;
                     z-index:50;
                     background:#000;
-                    position:absolute;
+                    position:fixed;
                     width: 100%;
                     opacity:0;
                 }
