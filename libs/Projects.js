@@ -6,7 +6,11 @@ export const projects = [
         main_image: '/images/kikert_parallax.jpg',
         description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
         categories: [{
+        categories: [{
             id: 1,
+            name: 'Design UX/UI',
+            code: 'uxui'
+        }],
             name: 'Design UX/UI',
             code: 'uxui'
         }],
@@ -35,6 +39,21 @@ export const projects = [
             },
             {
                 id: 3,
+                name: 'photo1',
+                url: '/images/work/kikert/k3.jpg',
+            },
+            {
+                id: 4,
+                name: 'photo1',
+                url: '/images/work/kikert/k1.jpg',
+            },
+            {
+                id: 5,
+                name: 'photo1',
+                url: '/images/work/kikert/k2.jpg',
+            },
+            {
+                id: 6,
                 name: 'photo1',
                 url: '/images/work/kikert/k3.jpg',
             },

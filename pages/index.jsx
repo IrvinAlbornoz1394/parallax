@@ -4,6 +4,7 @@ import { Global, css } from '@emotion/react';
 import { gsap } from 'gsap';
 import { Fade } from "react-awesome-reveal";
 /* import { SplitText } from '../libs/SplitText.min' */
+/* import { SplitText } from '../libs/SplitText.min' */
 import { ScrollTrigger } from '../libs/ScrollTrigger.min'
 
 
@@ -47,6 +48,7 @@ const Index = () => {
     }, []);
 
     /* useEffect(() => {
+    /* useEffect(() => {
 
         gsap.registerPlugin(ScrollTrigger, SplitText);
         //gsap.config({ trialWarn: false });
@@ -69,6 +71,7 @@ const Index = () => {
         })
 
         //Opcion1
+        //Opcion1
         animation.from(split.words, {
             duration: 0.5,
             y: -100,
@@ -81,6 +84,7 @@ const Index = () => {
         });
 
 
+        }, [])  */
         }, [])  */
     
 
@@ -264,6 +268,7 @@ const Index = () => {
                         </Col>
                     </Row>
                 </div>
+                <Crew refLef={arrowLeft} refRight={arrowRight} />
                 <Crew refLef={arrowLeft} refRight={arrowRight} />
                 <SectionServices />
                 <Work />

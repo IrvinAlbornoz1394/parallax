@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import ContactSection from '../ContactSection'
 import VideoContent from './elements/VideoContent'
 import Carrousel from './elements/Carrousel'
+import Carrousel from './elements/Carrousel'
 const TextDescription = dynamic(() => import('../work/elements/TextDescription'),{
     ssr: false,
   })
@@ -60,6 +61,9 @@ const ProjectDetails = () => {
                     margin: 0px 30px;
                 }
                 .sectionTitleProject{
+                    height: 400px;
+                    padding-top:60px;
+                    padding-bottom: 20px;
                     height: 400px;
                     padding-top:60px;
                     padding-bottom: 20px;
@@ -183,6 +187,9 @@ const ProjectDetails = () => {
                     </Col>
             }
             {/* Galeria de 3 */}
+            <Col span={24}>
+                <Carrousel gallery={currentProject?.gallery2} />
+            </Col>
             <Col span={24}>
                 <Carrousel gallery={currentProject?.gallery2} />
             </Col>

@@ -6,10 +6,14 @@ import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverAll
 import { routerTransition } from '../libs/functions'
 import { useRouter } from 'next/router';
 
+import { useRouter } from 'next/router';
 
+
+const Demo = ({refLef = null, refRight = null, ...props}) => {
 const Demo = ({refLef = null, refRight = null, ...props}) => {
 
   const dispatch = useDispatch()
+  const route = useRouter()
   const route = useRouter()
 
   const hoverArrowL = useSelector((state) => state.web.hoverArrowL)
@@ -65,6 +69,8 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
 
 
     validateHoverServices(e)
+
+    validateHoverProject(e)
 
     validateHoverProject(e)
 
@@ -349,6 +355,17 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
       if(leave_hover){
         dispatch(updHoverProject(""))
       }
+    }
+  }
+
+  /* Hover en la lista de servicios en /work */
+  const validateHoverProject = () => {
+    /* Obtenemos todos los proyectos */
+    let texts = document.getElementsByClassName("titleProjectsContent")
+    if(texts){
+      for (let item of texts) {
+        validateHoverItemProjects(item, e)
+      } 
     }
   }
 
@@ -705,6 +722,7 @@ const clickFunction = () => {
 
   for (const [key, value] of Object.entries(hoverItemsMenu)) {
     if(value == true){  
+      /* routerTransition() */
       /* routerTransition() */
       let element = document.getElementById(`section_${key}`);
       /* element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"}); */

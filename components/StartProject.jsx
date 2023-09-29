@@ -85,6 +85,7 @@ const StartProject = () => {
             `}
         />
         <section id="section_ux_ui" className='hfull section_ux_ui' style={{ position:'relative' }}>
+        <section id="section_ux_ui" className='hfull section_ux_ui' style={{ position:'relative' }}>
             <div id="scene" style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
                 <img  data-depth="1" id="img_effect" className="img_effect" className src='/images/uxui_sinbordes_1360x768.png' className='img_effect'
                     style={{ width: '500px', margin: 'auto !important', textAlign: 'center' }}

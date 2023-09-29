@@ -83,7 +83,27 @@ export const webSlice = createSlice({
     updHoverProject: (state, action) => {
       state.hoverProjects = action.payload
     },
+    updHoverProject: (state, action) => {
+      state.hoverProjects = action.payload
+    },
     updHoverServices: (state, action) => {
+      let newServiceHoverState = {...state.hoverServices}
+      for (const [key, value] of Object.entries(newServiceHoverState)) {
+        if(key === action.payload.key){
+          newServiceHoverState[key] = action.payload.val
+        }else{
+          newServiceHoverState[key] = false
+        }
+      }
+      /* let newServiceHoverState = {...state.hoverServices, [action.payload.key]: action.payload.val }
+      state.hoverServices = newServiceHoverState */
+      state.hoverServices = newServiceHoverState
+    },
+    clearHoverServices: (state, action) => {
+      let newServiceHoverState = {...state.hoverServices}
+      for (const [key, value] of Object.entries(newServiceHoverState)) {
+          newServiceHoverState[key] = false
+      }
       let newServiceHoverState = {...state.hoverServices}
       for (const [key, value] of Object.entries(newServiceHoverState)) {
         if(key === action.payload.key){
@@ -197,6 +217,7 @@ export const {
           setHoverStartProject,
           loadServices,
           updHoverServices,
+          clearHoverServices,
           clearHoverServices,
           updHoverLinks,
           updHoverMenu,

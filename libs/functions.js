@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import { TimelineMax } from './TweenMax.min'
 
 
+
 export const convertToPlain = (html) => {
 
     // Create a new div element
@@ -69,6 +70,7 @@ export const routerTransition = (linkFuntion) => {
     }, 3500);
 
     setTimeout(() => {
+        linkFuntion()
         linkFuntion()
         animateFinal();
     }, 4000);
