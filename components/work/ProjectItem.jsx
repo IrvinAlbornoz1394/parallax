@@ -94,7 +94,7 @@ const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
                 }
 
                 .hoverProjects:focus{
-                    outline: none !important;
+                    outline: 0 !important;
                 }
             `}
         />
