@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Layout, Menu, Typography } from 'antd'
+import { Button, Image, Layout, Menu, Typography } from 'antd'
 import { Global, css } from '@emotion/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { gsap } from 'gsap';
+
+
 
 
 const MyHeader = () => {
@@ -119,7 +121,7 @@ const MyHeader = () => {
             />
             <Header style={styles.header}  >
                 <div style={{ flex: 1, display:'flex' }}>
-                    <img src='/images/parallax_icon.svg' style={{ width:45, marginBottom:'auto', marginTop:'auto' }} />
+                    <Image src='/images/parallax_icon.svg' style={{ width:45, marginBottom:'auto', marginTop:'auto' }} />
                 </div>
                 <Menu className='mainMenu' mode="horizontal" items={items1}/>
                 <div style={{ flex: 1, display:'flex', justifyContent:'end' }}>
