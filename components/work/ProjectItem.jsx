@@ -94,11 +94,11 @@ const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
                 }
 
                 .hoverProjects:focus{
-                    outline: none;
+                    outline: none !important;
                 }
             `}
         />
-        <div id={`show_${key_id}`} tabIndex={-1} className='hoverProjects titleProjectsContent' /* onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} */ >
+        <div id={`show_${key_id}`} tabIndex={-2} className='hoverProjects titleProjectsContent' /* onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} */ >
             <Text className='titleListHover text_white font-xxl' ref={refNameProj}>
                 {nameProject}
             </Text>
