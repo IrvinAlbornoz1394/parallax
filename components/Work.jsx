@@ -2,6 +2,7 @@ import { Global, css } from '@emotion/react'
 import { Col, Row, Typography } from 'antd'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import kikert_parallax from '../assets/images/kikert_parallax.jpg'
 
 const Work = () => {
 
@@ -37,7 +38,7 @@ const Work = () => {
                 }
                 .back_main_work{
                     position:relative;
-                    background-image: url(/images/kikert_parallax.jpg);
+                    background-image: url(${kikert_parallax.src});
                     background-position: center;
                     background-repeat: no-repeat;
                     background-size: cover;
