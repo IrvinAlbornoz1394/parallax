@@ -4,6 +4,7 @@ import { Button, Typography } from 'antd'
 import TooltipCrew from './TooltipCrew';
 import { useSelector } from 'react-redux';
 import { gsap } from 'gsap';
+import Image from 'next/image';
 
 
 const CrewItem = ({img, name = null, description = null, ...props}) => {
@@ -89,7 +90,7 @@ const CrewItem = ({img, name = null, description = null, ...props}) => {
 
             </div>
             <div className='content-item-carrousel'>
-                <img src={img} alt="" className='img-avatar' />
+                <Image src={img} alt="" className='img-avatar' />
                 <br />
                 <Text className="name-avatar textBold">
                     {name}

@@ -265,7 +265,6 @@ const Index = () => {
                     </Row>
                 </div>
                 <Crew refLef={arrowLeft} refRight={arrowRight} />
-                <Crew refLef={arrowLeft} refRight={arrowRight} />
                 <SectionServices />
                 <Work />
                 <StartProject />

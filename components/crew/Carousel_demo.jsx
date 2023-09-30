@@ -4,6 +4,12 @@ import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CrewItem from './CrewItem';
+import Image from 'next/image';
+import Arrow_right from '../../assets/images/Arrow_right.png'
+import Arrow_left from '../../assets/images/Arrow_left.svg'
+import AlexAvatar from '../../assets/images/crew/alex_avatar.png'
+import AngieAvatar from '../../assets/images/crew/angie_avatar.png'
+import SakreAvatar from '../../assets/images/crew/sakre_avatar.png'
 
 
 const responsive = {
@@ -35,7 +41,7 @@ const Carousel_demo = ({refLef, refRight, ...props}) => {
         onMove,
         carouselState: { currentSlide, deviceType }
       } = rest;
-      return <img ref={refRight} id="arrow_right" src='/images/Arrow_right.png' className='right_arrow_carousel' onClick={() => onClick()} />
+      return <Image ref={refRight} id="arrow_right" src={Arrow_right} className='right_arrow_carousel' onClick={() => onClick()} />
   };
     
   const CustomLeftArrow = ({ onClick, ...rest }) => {
@@ -43,7 +49,7 @@ const Carousel_demo = ({refLef, refRight, ...props}) => {
         onMove,
         carouselState: { currentSlide, deviceType }
     } = rest;
-      return <img ref={refLef} id="arrow_left" src='/images/Arrow_left.svg' className='left_arrow_carousel' onClick={() => onClick()} />
+      return <Image ref={refLef} id="arrow_left" src={Arrow_left} className='left_arrow_carousel' onClick={() => onClick()} />
   };
 
   return (
@@ -78,9 +84,9 @@ const Carousel_demo = ({refLef, refRight, ...props}) => {
         /* dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px" */
     >
-        <CrewItem name={'Alex Lara'} key_id="alex" description={'Founder & Senior'} img={'/images/crew/alex_avatar.png'} />
-        <CrewItem name={'Angie Braga'} key_id="angie" description={'Founder & Senior'} img={'/images/crew/angie_avatar.png'} />
-        <CrewItem name={'Sakre Saenz'} key_id="sakre" description={'Founder & Senior'} img={'/images/crew/sakre_avatar.png'} />
+        <CrewItem name={'Alex Lara'} key_id="alex" description={'Founder & Senior'} img={AlexAvatar} />
+        <CrewItem name={'Angie Braga'} key_id="angie" description={'Founder & Senior'} img={AngieAvatar} />
+        <CrewItem name={'Sakre Saenz'} key_id="sakre" description={'Founder & Senior'} img={SakreAvatar} />
     </Carousel>
     </>
   )
