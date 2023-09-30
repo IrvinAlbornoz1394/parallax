@@ -1,9 +1,11 @@
 import { Global, css } from '@emotion/react'
 import { Row, Col, Button, Space } from 'antd'
+import Image from 'next/image';
 import { gsap } from 'gsap'
 import React, { useState, useEffect } from 'react'
 import { onMouseMove } from '../components/functions'
 import { useSelector, useDispatch } from 'react-redux'
+import parallax_logotipo from '../assets/images/parallax_logotipo.svg'
 
 
 const MainFullScreen = () => {
@@ -53,7 +55,8 @@ const MainFullScreen = () => {
     <div /* style={styles.content} */ className='hfull mainHome'>
       <Row align="bottom" justify='center'>
         <Col xs={22} sm={12} md={12} lg={9} style={styles.cols}>
-          <img src='/images/parallax_logotipo.svg' style={styles.imgLogo} />
+
+          <Image src={parallax_logotipo}  style={styles.imgLogo} />
         </Col>
         <Col span={24} style={styles.cols}>
               <Space size={100} style={styles.spaceBtns}>
