@@ -355,7 +355,7 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
   }
 
   /* Hover en la lista de servicios en /work */
-  const validateHoverProject = () => {
+  const validateHoverProject = (e) => {
     /* Obtenemos todos los proyectos */
     let texts = document.getElementsByClassName("titleProjectsContent")
     if(texts){
