@@ -50,8 +50,14 @@ export const webSlice = createSlice({
       'angie': false,
       'alex': false,
       'sakre': false
-    }
-
+    },
+    hoverContact:{
+      'mark': false,
+      'uxui': false,
+      'dev': false,
+      'otro': false
+    },
+    nextStepContact: false,
   },
   reducers: {
     loadServices: (state, action) => { 
@@ -182,6 +188,14 @@ export const webSlice = createSlice({
     setHoverCloseVideo: (state, action) =>{
       state.hoverCloseVideo = action.payload
     },
+    setHoverContact:(state, action) => {
+      let newHoverContact = {'mark': false, 'uxui': false, 'dev': false, 'otro': false}
+      newHoverContact[action.payload.key] = action.payload.val
+      state.hoverContact = newHoverContact
+    },
+    setNextStep: (state, action) =>{
+      state.nextStepContact = action.payload
+    },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
@@ -225,7 +239,9 @@ export const {
           setHoverAllProjects,
           setHoverPlay,
           setOpenVideo,
-          setHoverCloseVideo
+          setHoverCloseVideo,
+          setHoverContact,
+          setNextStep
         } = webSlice.actions
 
 export default webSlice.reducer

@@ -31,7 +31,7 @@
     color: var(--primary);
 }
 .carTexYellow{
-    background-color: var(--primary);
+    background-color: var(--primary) !important;
     color: var(--blackPrimary);
     border-radius: 6px;
 }
@@ -101,4 +101,8 @@
 .my-auto{
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.body-content-children{
+    min-height: calc(100vh - 52px);
 }

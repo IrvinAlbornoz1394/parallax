@@ -21,7 +21,9 @@ const MainLayout = ({ style=null, ...props}) => {
             <Demo refLef={props?.arrowLeft} refRight={props?.arrowRight} />
             <MyHeader />
             <Content className='body'>          
-                {props.children}
+                <div className='body-content-children'>
+                    {props.children}
+                </div>
                 <Footer />
             </Content>
             {/* <Transition/> */}

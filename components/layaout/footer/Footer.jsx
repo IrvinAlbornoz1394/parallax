@@ -18,8 +18,8 @@ const Footer = () => {
             margin-top:70px;
             margin-bottom: 90px;
           }
-          .mb-50{
-            margin-bottom:50px;
+          .mb-20{
+            margin-bottom:20px;
           }
           .row_footer{
             width:100%;
@@ -33,17 +33,17 @@ const Footer = () => {
             <Row justify={'space-between'}>
               <Col>
                 <Row gutter={20 }>
-                  <Col className='mb-50'>
+                  <Col className='mb-20'>
                     <Button type='ghost' className='font-18 txt-white'>
                       Instagram
                     </Button>
                   </Col>
-                  <Col className='mb-50'>
+                  <Col className='mb-20'>
                     <Button type='ghost' className='font-18 txt-white'>
                       Linkedin
                     </Button>
                   </Col>
-                  <Col className='mb-50'>
+                  <Col className='mb-20'>
                   <Button type='ghost' className='font-18 txt-white'>
                       Behance
                     </Button>
@@ -52,17 +52,17 @@ const Footer = () => {
               </Col>
               <Col>
                 <Row gutter={50}>
-                  <Col className='mb-50'>
+                  <Col className='mb-20'>
                     <Button type='ghost' className='font-18 txt-white'>
                       ©2022 Parallax
                     </Button>
                   </Col>
-                  <Col className='mb-50'>
+                  <Col className='mb-20'>
                     <Button type='ghost' className='font-18 txt-white'>
                       Privacy
                     </Button>
                   </Col>
-                  <Col className='mb-50'>
+                  <Col className='mb-20'>
                   <Button type='ghost' className='font-18 txt-white'>
                     Terms of Service
                     </Button>

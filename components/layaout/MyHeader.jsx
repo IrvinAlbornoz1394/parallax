@@ -96,7 +96,7 @@ const MyHeader = () => {
                     border: none !important;
                 }
                 .btn_new_proyect_header{
-                    background-color: ${ hoverNvoProjectHeader == true ?  "#E0FF10" : "#E7FD52"} ;
+                    background-color: ${ hoverNvoProjectHeader == true ?  "#E0FF10" : "#E7FD52"} !important;
                     width: 218px;
                     height: 54px;
                 }

@@ -54,13 +54,7 @@ const Transition = () => {
                 }
             `}
         />
-        <div class='wrapper'>
-            <svg class="transition" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path class="path" fill='#fff'   dur="10s" vector-effect="non-scaling-stroke" d="M 0 100 V 100 Q 50 100 100 100 V 100 z"/>
-                {/* <path class="path" fill='#fff' stroke="#000" stroke-width="5px" dur="10s" vector-effect="non-scaling-stroke" d="M100,250 Q250,100 400,250 Z"/> */}
-                
-            </svg>
-        </div>
+        
     </>
   )
 }
