@@ -41,7 +41,7 @@ const Carousel_demo = ({refLef, refRight, ...props}) => {
         onMove,
         carouselState: { currentSlide, deviceType }
       } = rest;
-      return <Image ref={refRight} id="arrow_right" src={Arrow_right} className='right_arrow_carousel' onClick={() => onClick()} />
+      return <Image alt='right' ref={refRight} id="arrow_right" src={Arrow_right} className='right_arrow_carousel' onClick={() => onClick()} />
   };
     
   const CustomLeftArrow = ({ onClick, ...rest }) => {
@@ -49,7 +49,7 @@ const Carousel_demo = ({refLef, refRight, ...props}) => {
         onMove,
         carouselState: { currentSlide, deviceType }
     } = rest;
-      return <Image ref={refLef} id="arrow_left" src={Arrow_left} className='left_arrow_carousel' onClick={() => onClick()} />
+      return <Image alt='left' ref={refLef} id="arrow_left" src={Arrow_left} className='left_arrow_carousel' onClick={() => onClick()} />
   };
 
   return (

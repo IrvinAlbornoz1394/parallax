@@ -3,12 +3,14 @@ import React, { useEffect } from 'react'
 import Carousel_demo from './Carousel_demo';
 import { Global, css } from '@emotion/react';
 import { useSelector } from 'react-redux';
+import {team} from '../../utils/Crew'
+import { useRouter } from 'next/router';
 
 const Crew = ({refLef, refRight, ...props}) => {
 
+    const route = useRouter()
     const { Text } = Typography
     const hoverItemsCrew = useSelector((state) => state.web?.hoverItemsCrew)
-
     
     
 

@@ -11,6 +11,8 @@ const CrewItem = ({img, name = null, description = null, ...props}) => {
 
     const hoverItemsCrew = useSelector((state) => state.web?.hoverItemsCrew)
     const cursorPointer = useSelector((state) => state.web?.cursorPointer)
+    const hoverBtnItemsCrew = useSelector((state) => state?.web?.hoverBtnItemsCrew)
+
 
     const { Text } = Typography
 
@@ -45,6 +47,7 @@ const CrewItem = ({img, name = null, description = null, ...props}) => {
                     padding-bottom:30px;
                     padding-top:30px;
                     display:flex;
+                    cursor: pointer;
                     
                 }
                 .img-avatar{
@@ -90,7 +93,7 @@ const CrewItem = ({img, name = null, description = null, ...props}) => {
 
             </div>
             <div className='content-item-carrousel'>
-                <Image src={img} alt="" className='img-avatar' />
+                <Image src={img} alt="" className='img-avatar' alt="Avatar" />
                 <br />
                 <Text className="name-avatar textBold">
                     {name}
@@ -100,7 +103,7 @@ const CrewItem = ({img, name = null, description = null, ...props}) => {
                     {description}
                 </small>
                 <br />
-                <Button className='btn-about-me btn-bold'>
+                <Button className='btn-about-me btn-bold btn_team_link' id={props.key_id}>
                     Conóceme
                 </Button>
             </div>

@@ -53,6 +53,7 @@ export const transitionFinal = () => {
 }
 
 export const routerTransition = (linkFuntion) => {
+    
     gsap.to(".wrapper", { duration: .1, zIndex: '101' })
     setTimeout(() => {
         gsap.to(".wrapper", { duration: .25, opacity: .25, ease: "none" },)

@@ -33,6 +33,13 @@ export const webSlice = createSlice({
       'motion': false,
       'software': false
     },
+    hoverServicesCat: {
+      'all': false,
+      'uxui': false,
+      'brand': false,
+      'motion': false,
+      'software': false
+    },
     hoverLinksServices:{
       'uxui': false,
       'brand': false,
@@ -47,6 +54,11 @@ export const webSlice = createSlice({
       'Contacto': false
     },
     hoverItemsCrew:{
+      'angie': false,
+      'alex': false,
+      'sakre': false
+    },
+    hoverBtnItemsCrew:{
       'angie': false,
       'alex': false,
       'sakre': false
@@ -92,15 +104,12 @@ export const webSlice = createSlice({
     updHoverProject: (state, action) => {
       state.hoverProjects = action.payload
     },
+    updHoverServicesCat: (state, action) => {
+      let newState = {...state.hoverServicesCat, [action.payload.key]: action.payload.val }
+      state.hoverServicesCat = newState
+    },
     updHoverServices: (state, action) => {
-      let newServiceHoverState = {...state.hoverServices}
-      for (const [key, value] of Object.entries(newServiceHoverState)) {
-        if(key === action.payload.key){
-          newServiceHoverState[key] = action.payload.val
-        }else{
-          newServiceHoverState[key] = false
-        }
-      }
+      let newServiceHoverState = {...state.hoverServices, [action.payload.key]: action.payload.val}
       /* let newServiceHoverState = {...state.hoverServices, [action.payload.key]: action.payload.val }
       state.hoverServices = newServiceHoverState */
       state.hoverServices = newServiceHoverState
@@ -136,6 +145,10 @@ export const webSlice = createSlice({
     updHoverCrew: (state, action) => {
       let newCrewHoverState = {...state.hoverItemsCrew, [action.payload.key]: action.payload.val }
       state.hoverItemsCrew = newCrewHoverState
+    },
+    updHoverBtnItemsCrew: (state, action) => {
+      let newState = {...state.hoverBtnItemsCrew, [action.payload.key]: action.payload.val }
+      state.hoverBtnItemsCrew = newState
     },
     setHoverWork: (state, action) => {
       state.hoverWork = action.payload
@@ -226,11 +239,13 @@ export const {
           setCursorPointer, 
           setHoverStartProject,
           loadServices,
+          updHoverServicesCat,
           updHoverServices,
           clearHoverServices,
           updHoverLinks,
           updHoverMenu,
           updHoverCrew,
+          updHoverBtnItemsCrew,
           setHoverCookies,
           setShowCookie,
           setCatWorkSelected,

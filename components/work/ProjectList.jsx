@@ -15,7 +15,7 @@ const ProjectList = () => {
 
     
 
-    useEffect(() => {
+    /* useEffect(() => {
         setProjectsList([])
         setTimeout(() => {
             if(catWorkSelected){
@@ -32,7 +32,13 @@ const ProjectList = () => {
         }, 10);
         
       
-    }, [catWorkSelected])
+    }, [catWorkSelected]) */
+
+
+    useEffect(() => {
+      setProjectsList(projects)
+    }, [])
+    
     
 
     return (

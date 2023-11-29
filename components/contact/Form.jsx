@@ -13,7 +13,7 @@ const FormContact = () => {
 
     const Prefix = ({icon}) => (
         <div className='boxPrefix'>
-            <Image src={icon} />
+            <Image src={icon}  alt='prefix' />
         </div>
     )
 

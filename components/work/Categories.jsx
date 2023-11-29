@@ -41,14 +41,14 @@ const Categories = () => {
             />
             <Row className='listCategoriesContent' justify={'center'} gutter={50}>
                     <Col style={{ color:'white' }}>
-                            <Text id="all" className={`font-24 titleServicesContent  ${!catWorkSelected ? 'catSelected' : 'text_white'}`}>
+                            <Text id="all" className={`font-24 titleServicesCategory  ${!catWorkSelected ? 'catSelected' : 'text_white'}`}>
                                 All projects
                             </Text>
                     </Col>
                 {
                     services?.map((item, idx) => { 
                         return (<Col style={{ color:'white' }}>
-                            <Text id={`show_${item?.key}`} className={`font-24 titleServicesContent  ${catWorkSelected === item.key ? 'catSelected' : 'text_white'}`}>
+                            <Text id={`${item?.key}`} className={`font-24 titleServicesCategory  ${catWorkSelected === item.key ? 'catSelected' : 'text_white'}`}>
                                 {item.name}
                             </Text>
                         </Col>)

@@ -56,7 +56,7 @@ const MainFullScreen = () => {
       <Row align="bottom" justify='center'>
         <Col xs={22} sm={12} md={12} lg={9} style={styles.cols}>
 
-          <Image src={parallax_logotipo}  style={styles.imgLogo} />
+          <Image src={parallax_logotipo}  style={styles.imgLogo} alt='logoparallax' />
         </Col>
         <Col span={24} style={styles.cols}>
               <Space size={100} style={styles.spaceBtns}>

@@ -55,7 +55,7 @@ const StartProject = () => {
                     background-color: ${ hoverStartProject == true ? "#E7FD52" : "transparent" };
                     border-radius: 3px;
                     border: solid 2px #E7FD52;
-                    color: ${hoverStartProject == true ? "#00000" : "#E7FD52"};
+                    color: ${hoverStartProject == true ? "black" : "#E7FD52"};
                     width: 218px;
                     height: 54px;
                     cursor: pointer;

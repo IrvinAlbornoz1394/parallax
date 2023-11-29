@@ -13,13 +13,6 @@ const SectionServices = () => {
     const hoverServices = useSelector((state) => state.web?.hoverServices)
     const cursorPointer = useSelector((state) => state.web?.cursorPointer)
     
-
-   
-
-    
-
-    
-
   return (
     <>
     <Global 
@@ -50,7 +43,7 @@ const SectionServices = () => {
                 padding:20px;
                 position: absolute;
                 top: -25px;
-                opacity: 0; 
+                margin-left: 100px;
               }
 
               .hoverServices{

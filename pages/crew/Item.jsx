@@ -7,15 +7,9 @@ import { Global, css } from '@emotion/react'
 import { BehanceOutlined } from '@ant-design/icons';
 
 
-const ItemCrew = () => {
-    const router = useRouter()
+const ItemCrew = ({info, ...props}) => {
+  
 
-    useEffect(() => {
-        const { slug } = router.query
-        if(slug){
-            /* alert(slug) */
-        }
-    }, [router])
   return (
     <>
     <Global styles={css`
@@ -51,18 +45,18 @@ const ItemCrew = () => {
               <Row justify={'start'}>
                 <Col span={15} offset={1}>
                   <Space size={30}>
-                    <img src={SakreAvatar.src} />  
+                    <img src={info?.avatar?.src} />  
                     <div style={{ marginBottom:'auto', marginTop:'auto' }}>
                       <Typography.Text style={{ fontSize:24, fontWeight:'bold', color:'white' }}>
                         Hola me llamo
                       </Typography.Text>
                       <br />
                       <Typography.Text style={{ fontSize:24, fontWeight:'bold', color:'white' }}>
-                        Sakre Saenz
+                        {info?.name}
                       </Typography.Text>
                       <br />
-                      <Typography.Text style={{ fontSize:16, color:'white' }}>
-                          Polvo de estrellas &#128125; / artbat  &#128165;  / street art &#128163;   / Interestelar &#127756;
+                      <Typography.Text style={{ fontSize:16, color:'white' }}  >
+                        <div contentEditable='true' dangerouslySetInnerHTML={{ __html: info?.description }}></div>
                       </Typography.Text>
                       </div>
                     </Space>
@@ -74,20 +68,18 @@ const ItemCrew = () => {
                 </Col>
                 <Col span={24}>
                   <Typography.Text className='txt-white txt-profesional_experience' >
-                    <p>
-                      Creative Direction / Lead
-                    </p>
-                    <p>
-                      Product Designer/ Brand manager
-                    </p> 
-                    <p>
-                      / Design system / UXUI / CX. 
-                    </p>
+                    {
+                      info?.skills?.map(item => {
+                        return (<p> {item} </p>)
+                      } 
+                      )
+                    }
+
                   </Typography.Text>
                 </Col>
                 <Col span={24}>
                   <Typography.Text className='txt-white font-16'>
-                    <BehanceOutlined /> www.behance.net/sakresaenz
+                    <BehanceOutlined /> {info?.behance}
                   </Typography.Text>
                 </Col>
                 <Col span={24} style={{ textAlign:'center' }}>

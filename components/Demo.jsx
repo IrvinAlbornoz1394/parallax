@@ -2,7 +2,7 @@ import { Global, css } from '@emotion/react'
 import React, { useEffect } from 'react'
 import { gsap, selector } from 'gsap';
 import { useSelector, useDispatch } from 'react-redux'
-import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo, setHoverContact, setNextStep } from '../redux/recuder_slices/webReducer'
+import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, updHoverServicesCat, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, updHoverBtnItemsCrew, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo, setHoverContact, setNextStep } from '../redux/recuder_slices/webReducer'
 import { routerTransition } from '../libs/functions'
 
 import { useRouter } from 'next/router';
@@ -13,6 +13,8 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
   const dispatch = useDispatch()
   const route = useRouter()
 
+  const web = useSelector((state) => state?.web)
+
   const hoverArrowL = useSelector((state) => state.web.hoverArrowL)
   const hoverArrowR = useSelector((state) => state.web.hoverArrowR)
   const hoverWork = useSelector((state) => state.web?.hoverWork)
@@ -20,10 +22,13 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
   const hoverNvoProject = useSelector((state) => state.web?.hoverNvoProject)
   const hoverNvoProjectHeader = useSelector((state) => state.web?.hoverNvoProjectHeader)
   const hoverServices = useSelector((state) => state.web?.hoverServices)
+  const hoverServicesCat = useSelector((state) => state.web?.hoverServicesCat)
   const hoverLinksServices = useSelector((state) => state.web?.hoverLinksServices)
   const hoverItemsMenu = useSelector((state) => state.web?.hoverItemsMenu)  
   const cursorPointer = useSelector((state) => state.web?.cursorPointer)
   const hoverItemsCrew = useSelector((state) => state.web?.hoverItemsCrew)
+  const hoverBtnItemsCrew = useSelector((state) => state.web?.hoverBtnItemsCrew)
+
   const hoverCookies = useSelector((state) => state.web?.hoverCookies)
   const hoverWorkSection = useSelector((state) => state?.web?.hoverWorkSection)
   const hoverStartProject = useSelector((state) => state?.web?.hoverStartProject)
@@ -33,16 +38,14 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
   const hoverCloseVideo = useSelector((state) => state.web?.hoverCloseVideo)
   const hoverContact = useSelector((state) => state?.web?.hoverContact)
 
-  
+  useEffect(() => {
+    console.log('hoverServicesCat',hoverServicesCat)
+  }, [hoverServicesCat])
+    
 
   useEffect(() => {
     document.addEventListener('mousemove', onMouseMove);
   }, [])
-
-  
-  
-
-
   
   const onMouseMove = (e) => { 
     hoverFn(e)
@@ -65,10 +68,15 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
       mouseHover(true, false)
     }
 
+    validateHoverLinkCrew(e)
+
+
     validateHoverContact(e)
 
 
     validateHoverServices(e)
+
+    validateHoverServicesCat(e)
 
 
     validateHoverProject(e)
@@ -78,7 +86,7 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
 
     
 
-    if(window.location.pathname === `/`){
+    if(window.location.pathname === `/` || window.location.pathname === `/parallax/`){
       
       validateHoverCrew(e)
     }
@@ -314,7 +322,6 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
     let yMax = coords_item.y + coords_item.height
     /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
     if (yMin < e.y && e.y < yMax && e.x > xMin && xMax > e.x ){
-      console.log('si', item.id)
       dispatch(setHoverContact({val: true, key: item.id}))
       mouseHover(true)
       return true
@@ -328,6 +335,29 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
       
     }
   }
+  /* 
+  useEffect(() => {
+    console.log('============>', hoverServices)
+  }, [hoverServices])
+   */
+
+  const validateHoverServiceCat = (item, e) => {
+    let coords_item = item.getBoundingClientRect()
+    let xminServItem = coords_item.x
+    let xmaxServItem = coords_item.x + coords_item.width + 10
+    let yminServItem = coords_item.y -10
+    let ymaxServItem = coords_item.y + coords_item.height +10
+    /* Validamos si esta dentro del item */
+    if (yminServItem < e.y && e.y < ymaxServItem && e.x > xminServItem && e.x < xmaxServItem && hoverServicesCat[item.id] === false){
+      dispatch(updHoverServicesCat({val: true, key: item.id }))
+      mouseHover(true)
+      return true
+    } else if(yminServItem > e.y || e.y > ymaxServItem || e.x < xminServItem || e.x > xmaxServItem ) {
+      console.log('no')
+      dispatch(updHoverServicesCat({val: false, key: item.id }))
+      return false
+    }
+  }
 
   /* Validar cada uno de los items de la lista de servicios del index */
   const validateHoverItemServices = (item, e) => {
@@ -337,17 +367,13 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
     let xmaxServItem = coords_item.x + coords_item.width + 10
     let yminServItem = coords_item.y -10
     let ymaxServItem = coords_item.y + coords_item.height +10
-    /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
-    if (yminServItem < e.y && e.y < ymaxServItem && e.x > xminServItem ){
-      if(item.id === "all"){
-        dispatch(clearHoverServices())
-      }else if(item.id){
-        validHoverServices(hoverServices, item.id)
-      }
+    /* Validamos si esta dentro del item */
+    if (yminServItem < e.y && e.y < ymaxServItem && e.x > xminServItem && hoverServices[item.id] === false ){
+      dispatch(updHoverServices({val: true, key: item.id }))
       mouseHover(true)
       return true
     } else if((yminServItem > e.y || e.y > ymaxServItem || e.x < xminServItem)) {
-      /* dispatch(clearHoverServices()) */
+      dispatch(updHoverServices({val: false, key: item.id }))
       return false
     }
   }
@@ -390,12 +416,25 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
     }
   }
 
+  /* Hover en la lista de categorias de servisios de work */
+  const validateHoverServicesCat = (e) => {
+    /* Obtenemos los items de servicios */
+    let texts = document.getElementsByClassName("titleServicesCategory")
+    if(texts){
+      for (let item of texts) {
+        /* Validamos el hover en cada uno de los servicios */
+        validateHoverServiceCat(item, e)
+      } 
+    }
+  }
+
   /* Hover para lista de servicios en index */
   const validateHoverServices = (e) => {
-    /* Obtenemos coordenadas del boton nuevo proyecto */
+    /* Obtenemos los items de servicios */
     let texts = document.getElementsByClassName("titleServicesContent")
     if(texts){
       for (let item of texts) {
+        /* Validamos el hover en cada uno de los servicios */
         validateHoverItemServices(item, e)
       } 
     }
@@ -449,6 +488,24 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
     }
   }
 
+  const validHoverBtnLinkCrew = (item, e) => {
+    /* Obtener las coordenadas   */
+    let coords_item = item.getBoundingClientRect()
+    let mxin = coords_item.x
+    let xmax = coords_item.x + coords_item.width
+    let ymin = coords_item.y
+    let ymax = coords_item.y + coords_item.height
+    /* Validamos si esta dentro del item */
+    if (ymin < e.y && e.y < ymax && e.x > mxin && e.x < xmax && hoverBtnItemsCrew[item.id] === false ){
+      dispatch(updHoverBtnItemsCrew({val: true, key: item.id}))
+      mouseHover(true)
+      return true
+    } else if(ymin > e.y || e.y > ymax || e.x < mxin || e.x > xmax) {
+      dispatch(updHoverBtnItemsCrew({val: false, key: item.id}))
+      return false
+    }
+  } 
+
   /* validar el hover en item de link de empezar proyecto */
   const validateHoverItemCrew = (item, e) => {
     /* Obtener las coordenadas   */
@@ -476,6 +533,18 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
         let child_item = item.querySelector("div.border-card-crew")
         validateHoverItemCrew(child_item, e)
       } 
+    }
+  }
+
+  const validateHoverLinkCrew = (e) => {
+    /* Obtenemos coordenadas del link de empezar proyecto */
+    let elements = document.getElementsByClassName("react-multi-carousel-item--active")
+    if(elements){
+      for(let item of elements){
+        let btn = item.childNodes[0].childNodes[1].getElementsByClassName('btn_team_link')
+        validHoverBtnLinkCrew(btn[0], e)
+      }
+      
     }
   }
 
@@ -676,16 +745,54 @@ const linkToWorkPage = () => {
   }
 }
 
+useEffect(() => {
+  console.log('hoverStartProject=>',hoverStartProject)
+}, [hoverStartProject])
+
+const validateBtnCrew = () => {
+  let hoverBtn = null
+  for (const [key, value] of Object.entries(hoverBtnItemsCrew)) {
+    if(value == true){
+      hoverBtn = key
+    }
+  }
+  if(hoverBtn){
+    dispatch(updHoverBtnItemsCrew({val: false, key: hoverBtn}))
+    routerTransition(() => {
+      route.push(`/crew/${hoverBtn}`)
+    })
+    return
+  }
+}
+
+const selectCategory = () => {
+  let catSelected = null
+    for (const [key, value] of Object.entries(hoverServicesCat)) {
+      if(value == true){
+        catSelected = key
+        dispatch(setCatWorkSelected(key))
+      }
+    }
+    if(!catSelected){
+      dispatch(setCatWorkSelected(null))
+    }
+}
 
 /* Funcion para validar a que elemento se le esta dando click */
 const clickFunction = () => {
 
+  
 
+  /* Validar hover en los botones de conoceme */
+  validateBtnCrew()
+  
   /* Validar click sobre el menu superior */
   linkToSection()
 
   
   linkToWorkCategory()
+
+  selectCategory()
 
   nextStepContact()
 
@@ -736,6 +843,18 @@ const clickFunction = () => {
     refRight?.current.click()
   }
 
+
+  
+  
+
+
+  /* validamos el hover en el boton de inciar proyecto (Start trip) */
+  if(hoverStartProject){
+    routerTransition(() => {
+      route.push(`/contact`)
+    })
+  }
+
   /* Validamos que este en la seccion de work */
   if(hoverWorkSection){
     let hoverMenu = false
@@ -751,6 +870,9 @@ const clickFunction = () => {
     )
     }
   }
+
+  
+
 
   for (const [key, value] of Object.entries(hoverItemsMenu)) {
     if(value == true){  
@@ -778,6 +900,7 @@ const clickFunction = () => {
 }
 
   const nextStepContact = async () => {
+    
     for (const [key, value] of Object.entries(hoverContact)) {
       if(value == true){  
         dispatch(setNextStep(true))
