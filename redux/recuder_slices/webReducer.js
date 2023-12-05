@@ -27,6 +27,7 @@ export const webSlice = createSlice({
     hoverPlay: false,
     openVideo: false,
     hoverCloseVideo: false,
+    hoverCrewToHome: false,
     hoverServices: {
       'uxui': false,
       'brand': false,
@@ -110,8 +111,6 @@ export const webSlice = createSlice({
     },
     updHoverServices: (state, action) => {
       let newServiceHoverState = {...state.hoverServices, [action.payload.key]: action.payload.val}
-      /* let newServiceHoverState = {...state.hoverServices, [action.payload.key]: action.payload.val }
-      state.hoverServices = newServiceHoverState */
       state.hoverServices = newServiceHoverState
     },
     clearHoverServices: (state, action) => {
@@ -206,6 +205,9 @@ export const webSlice = createSlice({
       newHoverContact[action.payload.key] = action.payload.val
       state.hoverContact = newHoverContact
     },
+    updHoverToHome: (state, action) => {
+      state.hoverCrewToHome = action.payload
+    },
     setNextStep: (state, action) =>{
       state.nextStepContact = action.payload
     },
@@ -256,7 +258,8 @@ export const {
           setOpenVideo,
           setHoverCloseVideo,
           setHoverContact,
-          setNextStep
+          setNextStep,
+          updHoverToHome
         } = webSlice.actions
 
 export default webSlice.reducer

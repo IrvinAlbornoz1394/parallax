@@ -8,6 +8,9 @@ const Categories = () => {
     
     const catWorkSelected = useSelector((state) => state.web.catWorkSelected)
     const services = useSelector((state) => state.web?.services)
+    
+
+    
 
 
     const {Text, Title} = Typography

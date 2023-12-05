@@ -1,8 +1,8 @@
 import { Global, css } from '@emotion/react'
 import React, { useEffect } from 'react'
-import { gsap, selector } from 'gsap';
+import { gsap } from 'gsap';
 import { useSelector, useDispatch } from 'react-redux'
-import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, updHoverServicesCat, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, updHoverBtnItemsCrew, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo, setHoverContact, setNextStep } from '../redux/recuder_slices/webReducer'
+import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, updHoverServicesCat, updHoverToHome, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, updHoverBtnItemsCrew, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo, setHoverContact, setNextStep } from '../redux/recuder_slices/webReducer'
 import { routerTransition } from '../libs/functions'
 
 import { useRouter } from 'next/router';
@@ -37,6 +37,7 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
   const hoverPlay = useSelector((state) => state.web?.hoverPlay)
   const hoverCloseVideo = useSelector((state) => state.web?.hoverCloseVideo)
   const hoverContact = useSelector((state) => state?.web?.hoverContact)
+  const hoverCrewToHome = useSelector((state) => state?.web?.hoverCrewToHome)
 
   useEffect(() => {
     console.log('hoverServicesCat',hoverServicesCat)
@@ -53,7 +54,7 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
 
   const hoverFn = (e) => {
     /* Obtener coordenadas del boton work */
-    if(validateAllProjects(e) || validateHoverWork(e) || validateHoverNvoProj(e) || validateHoverNvoProjHeader(e) || validateHoverStartProject(e) || validatePlayHover(e) || validateHoverCloseVideo(e) ){
+    if(validateHoverCrewToHome(e) || validateAllProjects(e) || validateHoverWork(e) || validateHoverNvoProj(e) || validateHoverNvoProjHeader(e) || validateHoverStartProject(e) || validatePlayHover(e) || validateHoverCloseVideo(e) ){
       /* setHoverActive(true) */
       mouseHover(true)
     }else{
@@ -102,6 +103,26 @@ const Demo = ({refLef = null, refRight = null, ...props}) => {
     
     
     
+  }
+
+  const validateHoverCrewToHome = (e) => {
+    const btnToHome  = document.getElementById("mainButtonCrew")
+    if(btnToHome){
+      let cordBtnCrew = btnToHome.getBoundingClientRect();
+      
+      let xMin = cordBtnCrew.x
+      let xMax = cordBtnCrew.x + cordBtnCrew.width
+      let yMin = cordBtnCrew.y 
+      let yMax = cordBtnCrew.y + cordBtnCrew.height
+
+      if (xMin < e.x && e.x < xMax && yMin < e.y && e.y < yMax && !hoverCrewToHome){
+        dispatch(updHoverToHome(true))
+        return true
+      } else if((xMin > e.x || e.x > xMax || yMin > e.y || e.y > yMax)){
+        dispatch(updHoverToHome(false))
+        return false
+      }
+    }
   }
 
   const validateHoverWork = (e) => {
@@ -852,6 +873,15 @@ const clickFunction = () => {
   if(hoverStartProject){
     routerTransition(() => {
       route.push(`/contact`)
+      dispatch(setHoverStartProject(false))
+    })
+  }
+
+  /* Validamos el click en el hasta pronto de la pagina de CREW */
+  if(hoverCrewToHome){
+    routerTransition(() => {
+      route.push(`/`)
+      dispatch(setHoverStartProject(false))
     })
   }
 
@@ -884,12 +914,13 @@ const clickFunction = () => {
   }
 
   /* Validamos si dio click en algun proyecto */
-  if(hoverProjects){
+  /* Click ir al proyecto */
+  /* if(hoverProjects){
       routerTransition(() => {
         route.push(`work/${hoverProjects}`)
       }
     ) 
-  }
+  } */
 
   if(hoverAllProjects){
     routerTransition(() => {

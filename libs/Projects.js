@@ -6,13 +6,12 @@ export const projects = [
         main_image: 'https://irvinalbornoz1394.github.io/parallax/_next/static/media/kikert_parallax.656214f3.jpg',
         description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
         categories: [{
-        categories: [{
             id: 1,
             name: 'Design UX/UI',
             code: 'uxui'
-        }],
-            name: 'Design UX/UI',
-            code: 'uxui'
+            },
+            {name: 'Brand Strategy',
+            code: 'brand'
         }],
         gallery1: [
             {
@@ -162,7 +161,13 @@ export const projects = [
             id: 1,
             name: 'Design UX/UI',
             code: 'uxui'
-        }],
+        },
+        {
+            id: 1,
+            name: 'Software',
+            code: 'software'
+        }
+    ],
         gallery1: [
             {
                 id: 1,

@@ -6,13 +6,24 @@ import { useSelector } from 'react-redux';
 import Slide from 'react-reveal/Slide';
 
 
-const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
+const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) => {
     
     const { Title, Text } = Typography
     const refNameProj = useRef(null);
     const refImgProj = useRef(null);
+    const [classList, setClassList] = useState('')
 
     const hoverProjects = useSelector((state) => state.web?.hoverProjects)
+
+
+    useEffect(() => {
+        let classStr = ""
+        cats.map(item => {
+            classStr += `${item.code} `
+        })
+        setClassList(classStr)
+    }, [cats])
+    
 
     useEffect(() => {
         let texts = document.getElementsByClassName("hoverProjects")
@@ -98,16 +109,14 @@ const ProjectItem = ({nameProject=null, key_id=null, children, ...props}) => {
                 }
             `}
         />
-        <div id={`show_${key_id}`} tabIndex={-2} style={{ outline: 0 }} className='hoverProjects titleProjectsContent' /* onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} */ >
+        <div id={`show_${key_id}`} tabIndex={-2} style={{ outline: 0 }} className={`hoverProjects titleProjectsContent ${classList}`} /* onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} */ >
             <Text className='titleListHover text_white font-xxl' ref={refNameProj}>
                 {nameProject}
             </Text>
             <img src='/images/Arrow_right.png' className='arrowServices'  />
             <div className='contentCard' id={`card_show_${key_id}`}>
                 <div  className='cardImgProject'>
-                    <Slide left>
                     {children}
-                    </Slide>
                 </div>
             </div>
         </div>

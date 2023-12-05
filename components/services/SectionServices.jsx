@@ -78,7 +78,7 @@ const SectionServices = () => {
             <Col span={22}>
                 {
                     services?.map((item, idx) => (
-                            <ServiceItem nameService={item.name} key_id={item.key} idx={idx}>
+                            <ServiceItem nameService={item.name} key_id={item.key} idx={idx} >
                                 <Text className='textBold font-18'>
                                 {
                                     item.description

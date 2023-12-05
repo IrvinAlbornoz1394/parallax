@@ -83,7 +83,7 @@ const ItemCrew = ({info, ...props}) => {
                   </Typography.Text>
                 </Col>
                 <Col span={24} style={{ textAlign:'center' }}>
-                  <div className='mainButtonCrew'>
+                  <div className='mainButtonCrew' id="mainButtonCrew">
                     ¡Hasta pronto!
                   </div>
                 </Col>
