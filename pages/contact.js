@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import MainLayout from '../components/layaout/MainLayout'
 import { Button, Carousel, Col, Row, Space, Typography } from 'antd'
 import { Global, css } from '@emotion/react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import FormContact from '../components/contact/Form'
 import SelectService from '../components/contact/SelectService'
+import {updHoverBackContact} from '../redux/recuder_slices/webReducer'
 
 
 const Contact = () => {
@@ -13,8 +14,10 @@ const Contact = () => {
     const {Title, Text} = Typography
     const slider = useRef();
     const [currentStep, setCurrentStep] = useState(1)
-    
+    const dispatch = useDispatch()
 
+    const hoverBackContact = useSelector((state) => state?.web?.hoverBackContact)
+    
 
     useEffect(() => {
         if(nextStepContact){
@@ -62,7 +65,7 @@ const Contact = () => {
                 }
             `}
         />
-        <MainLayout style={{ paddingBottom: 0 }} >
+        <MainLayout style={{ paddingBottom: 0 }}  slider_contact={slider}>
             <Row style={{paddingTop:'10%'}} justify={'center'}>
                 <Col span={21}>
                     <Title level={1}  className='txt-white title-contact'>

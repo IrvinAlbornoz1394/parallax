@@ -17,7 +17,6 @@ const ProjectList = () => {
     
 
     useEffect(() => {
-        console.log(catWorkSelected)
         let projectShow = document.getElementsByClassName("hoverProjects")
         if(catWorkSelected !== 'all'){
             for (let item of projectShow) {
@@ -38,9 +37,9 @@ const ProjectList = () => {
         }else{
             for (let item of projectShow) {
                 if(item.className.includes('hide')){
+                    gsap.to(`#${item.id}`, {display: "block"})
                     gsap.to(`#${item.id}`, {duration: "0.3", transform: "scaleY(1)"})
                     item.classList.remove("hide");
-                    
                 }
             }
         }

@@ -1,5 +1,5 @@
 import { Col, Row, Typography } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import ProjectList from './ProjectList'
 import { Global, css } from '@emotion/react'
 import { useSelector } from 'react-redux'
@@ -8,6 +8,11 @@ const Categories = () => {
     
     const catWorkSelected = useSelector((state) => state.web.catWorkSelected)
     const services = useSelector((state) => state.web?.services)
+    
+    
+    useEffect(() => {
+      console.log('catWorkSelected=>',catWorkSelected)
+    }, [catWorkSelected])
     
 
     
@@ -44,7 +49,7 @@ const Categories = () => {
             />
             <Row className='listCategoriesContent' justify={'center'} gutter={50}>
                     <Col style={{ color:'white' }}>
-                            <Text id="all" className={`font-24 titleServicesCategory  ${!catWorkSelected ? 'catSelected' : 'text_white'}`}>
+                            <Text id="all" className={`font-24 titleServicesCategory  ${catWorkSelected === 'all' ? 'catSelected' : 'text_white'}`}>
                                 All projects
                             </Text>
                     </Col>

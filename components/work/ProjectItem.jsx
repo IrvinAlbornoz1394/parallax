@@ -109,7 +109,7 @@ const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) 
                 }
             `}
         />
-        <div id={`show_${key_id}`} tabIndex={-2} style={{ outline: 0 }} className={`hoverProjects titleProjectsContent ${classList}`} /* onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} */ >
+        <div id={`show_${key_id}`} className={`hoverProjects titleProjectsContent ${classList}`} /* onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} */ >
             <Text className='titleListHover text_white font-xxl' ref={refNameProj}>
                 {nameProject}
             </Text>

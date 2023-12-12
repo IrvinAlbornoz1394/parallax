@@ -71,6 +71,7 @@ export const webSlice = createSlice({
       'otro': false
     },
     nextStepContact: false,
+    hoverBackContact: false,
   },
   reducers: {
     loadServices: (state, action) => { 
@@ -208,6 +209,9 @@ export const webSlice = createSlice({
     updHoverToHome: (state, action) => {
       state.hoverCrewToHome = action.payload
     },
+    updHoverBackContact: (state, action) => {
+      state.hoverBackContact = action.payload
+    },
     setNextStep: (state, action) =>{
       state.nextStepContact = action.payload
     },
@@ -259,7 +263,8 @@ export const {
           setHoverCloseVideo,
           setHoverContact,
           setNextStep,
-          updHoverToHome
+          updHoverToHome,
+          updHoverBackContact
         } = webSlice.actions
 
 export default webSlice.reducer

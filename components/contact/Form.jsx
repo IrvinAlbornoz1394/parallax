@@ -6,6 +6,8 @@ import Email from '../../assets/images/contact/email.png'
 import Phone from '../../assets/images/contact/phone.png'
 import Company from '../../assets/images/contact/company.png'
 import Marker from '../../assets/images/contact/marker.png'
+import { LeftOutlined } from '@ant-design/icons';
+
 
 const FormContact = () => {
     const [form] = Form.useForm()
@@ -16,6 +18,9 @@ const FormContact = () => {
             <Image src={icon}  alt='prefix' />
         </div>
     )
+
+
+    
 
     return (
         <>
@@ -74,6 +79,16 @@ const FormContact = () => {
                     box-shadow: none !important;
                     resize: none !important;
                 }
+                .btnContactBack{
+                    border: none;
+                    border-radius: 3px;
+                    padding: 0px;
+                    font-size: 16px;
+                    font-weight: bolder;
+                    color: white;
+                    text-align: left;
+                }
+
                 .btnContact{
                     background-color: var(--primary);
                     border: none;
@@ -90,7 +105,7 @@ const FormContact = () => {
             `}
         />
         <Form>
-            <Row gutter={[20,30]} justify={'center'}>
+            <Row gutter={[20,30]} justify={'space-between'}>
                 <Col xs={24} md={24} >
                     <div className='item-form-content'>
                         <Form.Item>
@@ -139,6 +154,11 @@ const FormContact = () => {
                             </Row>
                         </Form.Item>
                     </div>
+                </Col>
+                <Col>
+                    <Button htmlType="button" type='link'  id="btnBackContact" className="btnContactBack">
+                       <LeftOutlined />  Regresar
+                    </Button>
                 </Col>
                 <Col>
                     <Button htmlType="submit" className="btnContact">
