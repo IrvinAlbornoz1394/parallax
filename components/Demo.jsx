@@ -761,16 +761,16 @@ const linkToWorkCategory = () => {
         dispatch(setCatWorkSelected(key.replace("show_","")))
       }
     }
-    if(!catSelected){
+    /* if(!catSelected){
       dispatch(setCatWorkSelected(null))
-    }
+    } */
   }else{
     /* Si no, entonces hacemos el redirecto a work con la categoria seleccionada */
     for (const [key, value] of Object.entries(hoverServices)) {
       if(value == true){
         const originalKey = key.replace("show_","")
         routerTransition(() => {
-          route.push(`work#${originalKey}`) 
+          route.push(`work#_${originalKey}`) 
           dispatch(updHoverServices({val: false, key: originalKey}))
         })
         /* let element = document.getElementById(`section_${key}`); */
@@ -831,12 +831,11 @@ const selectCategory = () => {
   let catSelected = null
     for (const [key, value] of Object.entries(hoverServicesCat)) {
       if(value == true){
+        console.log('key', key)
+        console.log('val', value)
         catSelected = key
-        dispatch(setCatWorkSelected(key))
+        dispatch(setCatWorkSelected(catSelected))
       }
-    }
-    if(!catSelected){
-      dispatch(setCatWorkSelected(null))
     }
 }
 
@@ -945,6 +944,7 @@ const clickFunction = () => {
         route.push(`work`) 
       }
     )
+    dispatch(setHoverSectionWork(false))
     }
   }
 
@@ -971,7 +971,7 @@ const clickFunction = () => {
 
   if(hoverAllProjects){
     routerTransition(() => {
-      route.push(`/work/#`)
+      route.push(`/work`)
     })
   }
 

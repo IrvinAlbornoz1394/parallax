@@ -25,9 +25,9 @@ const Index = () => {
 
     useEffect(() => {
       if(window?.location?.hash){
-        dispatch(setCatWorkSelected(window?.location?.hash.replace("#","")))
+        dispatch(setCatWorkSelected(window?.location?.hash.replace("#_","")))
       }else{
-        dispatch(setCatWorkSelected(""))
+        dispatch(setCatWorkSelected("all"))
       }
     }, [route])
 

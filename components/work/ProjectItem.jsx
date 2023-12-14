@@ -23,20 +23,20 @@ const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) 
         })
         setClassList(classStr)
     }, [cats])
-    
 
     useEffect(() => {
         let texts = document.getElementsByClassName("hoverProjects")
+
         for (let item of texts) {
-            if (`show_${hoverProjects}` === item.id ){
-                var element = document.getElementById(item.id);
-                element.focus()
+            if(`show_${hoverProjects}` === item.id ){
+                /* var element = document.getElementById(item.id);
+                element.focus() */
                 gsap.to(`#card_${item.id}`, {
                     duration: .6, scale: 1, opacity: 1, ease: "expoScale(1, 5)"
                 });
             }else{
-                var element = document.getElementById(item.id);
-                element.blur()
+                /* var element = document.getElementById(item.id);
+                element.blur() */
                 /*   */
                 gsap.to(`#card_${item.id}`, {duration: .6, scale: 0.5, opacity: 0, ease: "expoScale(1, 5)"});
             }
@@ -72,44 +72,44 @@ const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) 
                     margin-top:auto;
                     margin-bottom: auto;
                     margin-left:5%;
-                    visivility: hidden;
-                    opacity: 0;
+                    /* visivility: hidden; */
+                    /* opacity: 0; */
                     transition: opacity 0.5s;
                 }
                 .hoverProjects{
                     cursor:pointer;
-                    display:flex;
+                    
                     position:relative;
                 }
 
-                .hoverProjects:focus .arrowServices{
+                /* .hoverProjects:focus .arrowServices{
                     opacity: 1;
                     visibility: visible;
-                }
+                } */
 
-                .hoverProjects:focus .cardImgProject{
+                /* .hoverProjects:focus .cardImgProject{
                     opacity: 1;
                     visibility: visible;
                     duration: .6, 
                     scale: 1;
                     opacity: 1;
                     ease: "expoScale(1, 5);
-                }
+                } */
                 
                 
                 .cardImgProject{
                     padding:20px;
                     position: absolute;
                     top: -25px;
-                    opacity: 0; 
+                    /* opacity: 0;  */
                 }
 
-                .hoverProjects:focus{
+                /* .hoverProjects:focus{
                     outline:0px !important;
-                }
+                } */
             `}
         />
-        <div id={`show_${key_id}`} className={`hoverProjects titleProjectsContent ${classList}`} /* onMouseEnter={() => showCard()} onMouseLeave={() => hideCard()} */ >
+        <div id={`show_${key_id}`} className={`hoverProjects titleProjectsContent ${classList}`}  >
             <Text className='titleListHover text_white font-xxl' ref={refNameProj}>
                 {nameProject}
             </Text>
