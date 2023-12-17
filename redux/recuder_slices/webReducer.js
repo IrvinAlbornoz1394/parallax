@@ -72,6 +72,7 @@ export const webSlice = createSlice({
     },
     nextStepContact: false,
     hoverBackContact: false,
+    cursorDisable: false,
   },
   reducers: {
     loadServices: (state, action) => { 
@@ -99,9 +100,6 @@ export const webSlice = createSlice({
       ]
     
       state.services = servicesList
-    },
-    updHoverProject: (state, action) => {
-      state.hoverProjects = action.payload
     },
     updHoverProject: (state, action) => {
       state.hoverProjects = action.payload
@@ -228,6 +226,9 @@ export const webSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload
     },
+    setCursorDisable: (state, action) => {
+      state.cursorDisable = action.payload
+    }
   },
 })
 
@@ -264,7 +265,8 @@ export const {
           setHoverContact,
           setNextStep,
           updHoverToHome,
-          updHoverBackContact
+          updHoverBackContact,
+          setCursorDisable,
         } = webSlice.actions
 
 export default webSlice.reducer

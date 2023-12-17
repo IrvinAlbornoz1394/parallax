@@ -58,11 +58,20 @@ const MainFullScreen = () => {
 
           <Image src={parallax_logotipo}  style={styles.imgLogo} alt='logoparallax' />
         </Col>
+        
         <Col span={24} style={styles.cols}>
-              <Space size={100} style={styles.spaceBtns}>
-                <button className='btn_work font-18'  id="btn_work" >Work</button>
-                <button className='btn btn_new_proyect font-18' id="btn_new_project" >Nuevo proyecto</button>
-                </Space>
+          <Row justify={'center'} style={{ width:'100%'}}>
+            <Col xl={6}>
+              <button className='btn_work font-18'  id="btn_work" >Work</button>
+            </Col>
+            <Col xl={6}>
+              <button className='btn btn_new_proyect font-18' id="btn_new_project" >Nuevo proyecto</button>
+            </Col>
+          </Row>
+              {/* <Space size={100} style={styles.spaceBtns}>
+                
+                
+                </Space> */}
             </Col>
         </Row>
     </div>

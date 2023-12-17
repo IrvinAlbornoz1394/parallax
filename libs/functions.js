@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { TimelineMax } from './TweenMax.min'
+import { useDispatch } from "react-redux";
 
 
 
@@ -52,10 +53,13 @@ export const transitionFinal = () => {
     
 }
 
-export const routerTransition = (linkFuntion) => {
+export const routerTransition = (linkFuntion, action1=null, action2=null ) => {
     
     gsap.to(".wrapper", { duration: .1, zIndex: '101' })
     setTimeout(() => {
+        if(action1){
+            action1()
+        }
         gsap.to(".wrapper", { duration: .25, opacity: .25, ease: "none" },)
         gsap.to(".wrapper", { duration: .25, opacity: .50, ease: "none" })
         gsap.to(".wrapper", { duration: .25, opacity: .75, ease: "none" })
@@ -71,7 +75,7 @@ export const routerTransition = (linkFuntion) => {
     }, 3500);
 
     setTimeout(() => {
-        linkFuntion()
+        /* linkFuntion() */
         linkFuntion()
         animateFinal();
     }, 4000);
@@ -91,6 +95,9 @@ export const routerTransition = (linkFuntion) => {
     setTimeout(() => {
         new TimelineMax({repeatDelay: 1})
         .to(".path", .1, {attr: {  d: "M 0 100 V 100 Q 50 100 100 100 V 100 z" }, ease: Power2.easeIn})
+        if(action2){
+            action2()
+        }
     }, 6000);
 
     

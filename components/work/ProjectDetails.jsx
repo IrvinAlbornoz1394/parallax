@@ -130,7 +130,7 @@ const ProjectDetails = () => {
 
             `}
         />
-        <Row justify={'end'} gutter={[10,10]} className='' style={{ marginTop:20 }} >
+        <Row justify={{xs:'center', md:'end', lg: 'end', xl:'end', xxl:'end'}} gutter={[10,10]} className='' style={{ marginTop:20 }} >
             <Col span={21} className='sectionTitleProject'>
                 <div className='content-title-project'>
                     <div className='all-projects-back' id="all-projects-back" >
@@ -158,7 +158,7 @@ const ProjectDetails = () => {
             <Col span={24}>
                 <img src={currentProject?.main_image} className='img-100' />
             </Col>
-            <Col span={12}>
+            <Col xs={24} md={12}>
                 <TextDescription currentProject={currentProject}/>
             </Col>
             {

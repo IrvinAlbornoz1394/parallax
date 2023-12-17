@@ -75,8 +75,8 @@ const Contact = () => {
                         
                     </Title>        
                 </Col>
-                <Col  xs={24}>
-                    <Carousel autoplay={false} dots={false}
+                <Col  xs={20}>
+                    <Carousel autoplay={false} 
                         ref={ref => {   
                             slider.current = ref;
                         }}

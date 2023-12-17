@@ -29,7 +29,7 @@ const Crew = ({refLef, refRight, ...props}) => {
                     Tu proyecto en las manos <span className='textYellow'>que lo elevan</span>.
                 </Text>
                 <Row justify={'center'}>
-                    <Col span={17}>
+                    <Col span={17} id='carousel_team'>
                         <Carousel_demo refLef={refLef} refRight={refRight} />
                     </Col>
                 </Row>

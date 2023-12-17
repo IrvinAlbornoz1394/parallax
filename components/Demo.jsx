@@ -2,7 +2,7 @@ import { Global, css } from '@emotion/react'
 import React, { useEffect } from 'react'
 import { gsap } from 'gsap';
 import { useSelector, useDispatch } from 'react-redux'
-import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, updHoverServicesCat, updHoverToHome, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, updHoverBtnItemsCrew, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo, setHoverContact, setNextStep, updHoverBackContact } from '../redux/recuder_slices/webReducer'
+import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, updHoverServicesCat, updHoverToHome, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, updHoverBtnItemsCrew, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo, setHoverContact, setNextStep, updHoverBackContact, setCursorDisable } from '../redux/recuder_slices/webReducer'
 import { routerTransition } from '../libs/functions'
 
 import { useRouter } from 'next/router';
@@ -39,7 +39,7 @@ const Demo = ({refLef = null, refRight = null, slider_contact=null, ...props}) =
   const hoverContact = useSelector((state) => state?.web?.hoverContact)
   const hoverCrewToHome = useSelector((state) => state?.web?.hoverCrewToHome)
   const hoverBackContact = useSelector((state) => state?.web?.hoverBackContact)
-    
+  const cursorDisable = useSelector((state) => state?.web?.cursorDisable)
 
   useEffect(() => {
     document.addEventListener('mousemove', onMouseMove);
@@ -49,6 +49,20 @@ const Demo = ({refLef = null, refRight = null, slider_contact=null, ...props}) =
     console.log('hoverBackContact', hoverBackContact)
   }, [hoverBackContact])
   
+
+  const cursorAnimation1 = () => {
+    mouseHover(false)
+    dispatch(setHoverActive(false))
+    dispatch(setCursorPointer(false))
+    dispatch(setCursorDisable(true))
+  }
+
+  const cursorAnimation2 = () => {
+    
+    dispatch(setHoverActive(true))
+    dispatch(setCursorPointer(true))
+    dispatch(setCursorDisable(false))
+  }
   
   const onMouseMove = (e) => { 
     hoverFn(e)
@@ -600,13 +614,17 @@ const Demo = ({refLef = null, refRight = null, slider_contact=null, ...props}) =
 
   const validateHoverLinkCrew = (e) => {
     /* Obtenemos coordenadas del link de empezar proyecto */
-    let elements = document.getElementsByClassName("react-multi-carousel-item--active")
-    if(elements){
-      for(let item of elements){
-        let btn = item.childNodes[0].childNodes[1].getElementsByClassName('btn_team_link')
-        validHoverBtnLinkCrew(btn[0], e)
+    let card_carousel_team = document.getElementById("carousel_team")
+    console.log('==>', card_carousel_team)
+    if(card_carousel_team !== null){
+      let elements = document.getElementsByClassName("react-multi-carousel-item--active")
+      if(elements){
+        for(let item of elements){
+          let btn = item.childNodes[0].childNodes[1].getElementsByClassName('btn_team_link')
+          validHoverBtnLinkCrew(btn[0], e)
+        }
+        
       }
-      
     }
   }
 
@@ -801,6 +819,7 @@ const linkToWorkPage = () => {
   
   if(!menu){
     routerTransition(() => {
+      console.log('1')
       route.push(`work`) 
     }
   )
@@ -842,6 +861,9 @@ const selectCategory = () => {
 /* Funcion para validar a que elemento se le esta dando click */
 const clickFunction = () => {
 
+  if(cursorDisable){
+    return 
+  }
   
 
   /* Validar hover en los botones de conoceme */
@@ -884,10 +906,16 @@ const clickFunction = () => {
     if(validateHoverInMenu()){
       return
     }
-
-    const element = document.getElementById(`section_ux_ui`);
-    element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-    return
+    if(route.pathname !== `/`){
+      routerTransition(() => {
+        route.push(`/#section_ux_ui`) 
+      })
+      return 
+    }else{
+      const element = document.getElementById(`section_ux_ui`);
+      element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+      return
+    }
   }
   /*  */
 
@@ -941,8 +969,10 @@ const clickFunction = () => {
     }
     if(!hoverMenu){
       routerTransition(() => {
-        route.push(`work`) 
-      }
+        route.push(`work`)
+      },
+      cursorAnimation1,
+      cursorAnimation2
     )
     dispatch(setHoverSectionWork(false))
     }
@@ -962,14 +992,17 @@ const clickFunction = () => {
 
   /* Validamos si dio click en algun proyecto */
   /* Click ir al proyecto */
-  /* if(hoverProjects){
+  if(hoverProjects){
+    console.log(2)
       routerTransition(() => {
         route.push(`work/${hoverProjects}`)
       }
     ) 
-  } */
+    dispatch(updHoverProject(null))
+  }
 
   if(hoverAllProjects){
+    console.log(3)
     routerTransition(() => {
       route.push(`/work`)
     })
@@ -1049,6 +1082,9 @@ const clickFunction = () => {
   }
 
 
+  
+  
+
 
   /*  */
   return (
@@ -1060,10 +1096,12 @@ const clickFunction = () => {
           position: fixed;
           top: 0;
           left: 0;
-          border: 1px solid var(--primary);
+          border: ${cursorDisable ? 'none' :  '1px solid var(--primary)'} ;
           border-radius: 50%;
           pointer-events: none;
           z-index:101;
+          background-image:  ${ cursorDisable ? "url(/images/cursor/loading.gif)" : 'none'};
+          background-size: cover;
         }
         .cursor-example {
           width: 10px;
