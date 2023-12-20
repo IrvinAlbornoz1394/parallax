@@ -384,17 +384,20 @@ const Demo = ({refLef = null, refRight = null, slider_contact=null, ...props}) =
     let yminProjItem = coords_item.y -10
     let ymaxProjItem = coords_item.y + coords_item.height +10
     /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
-    if (yminProjItem < e.y && e.y < ymaxProjItem && e.x > xminProjItem && hoverProjects === item.id.replace("show_","")){
-      dispatch(updHoverProject(newState.replace("show_","")))
+    if (yminProjItem < e.y && e.y < ymaxProjItem && e.x > xminProjItem && hoverProjects !== item.id.replace("show_","")){
+      dispatch(updHoverProject(item.id.replace("show_","")))
       /* if(item.id){
         validHover(hoverProjects, item.id)
       } */
       mouseHover(true)
       return true
-    } else if((yminProjItem > e.y || e.y > ymaxProjItem || e.x < xminProjItem) && (item.id === "show_"+hoverProjects) ) {
+    } else if((yminProjItem > e.y || e.y > ymaxProjItem || e.x < xminProjItem) /* && (item.id === "show_"+hoverProjects) */ ) {
       return false
     }
   }
+
+  
+  
   
   const validateHoverItemContact = (item, e) => {
     let coords_item = item.getBoundingClientRect()
@@ -487,9 +490,15 @@ const Demo = ({refLef = null, refRight = null, slider_contact=null, ...props}) =
     /* Obtenemos todos los proyectos */
     let texts = document.getElementsByClassName("titleProjectsContent")
     if(texts){
+      let leave_hover = 0
       for (let item of texts) {
-        validateHoverItemProjects(item, e)
+        if(!validateHoverItemProjects(item, e)){
+          leave_hover++;
+        }
       } 
+      if(leave_hover === texts.length){
+        dispatch(updHoverProject(""))
+      }
     }
   }
 
