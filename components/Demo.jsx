@@ -384,10 +384,11 @@ const Demo = ({refLef = null, refRight = null, slider_contact=null, ...props}) =
     let yminProjItem = coords_item.y -10
     let ymaxProjItem = coords_item.y + coords_item.height +10
     /* Validamos que ningun item tengo el hover para que solo sea uno a la vez */
-    if (yminProjItem < e.y && e.y < ymaxProjItem && e.x > xminProjItem){
-      if(item.id){
+    if (yminProjItem < e.y && e.y < ymaxProjItem && e.x > xminProjItem && hoverProjects === item.id.replace("show_","")){
+      dispatch(updHoverProject(newState.replace("show_","")))
+      /* if(item.id){
         validHover(hoverProjects, item.id)
-      }
+      } */
       mouseHover(true)
       return true
     } else if((yminProjItem > e.y || e.y > ymaxProjItem || e.x < xminProjItem) && (item.id === "show_"+hoverProjects) ) {
