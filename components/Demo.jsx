@@ -1100,6 +1100,7 @@ const clickFunction = () => {
   return (
     <>
       <Global styles={css`
+      @media only screen and (min-width: 992px) {
         .ball{
           width: 50px;
           height: 50px;
@@ -1125,6 +1126,8 @@ const clickFunction = () => {
           z-index:102;
           mix-blend-mode: difference;
           }
+        }
+        
         `} 
       />
       <div className="ball" ></div>

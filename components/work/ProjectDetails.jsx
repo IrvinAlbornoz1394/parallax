@@ -69,7 +69,12 @@ const ProjectDetails = () => {
                 }
                 .text-project-description{
                     padding: 50px 66px 50px 20px;
-
+                }
+                @media only screen and (max-width: 768px) {
+                    /* For mobile phones: */
+                    .text-project-description{
+                        padding: 50px;
+                    }
                 }
                 .text-project-description > *{
                     color: #FFF;
@@ -144,15 +149,28 @@ const ProjectDetails = () => {
                             Kikert
                         </p>
                     </div>
-                    <p >
-                            <Text className='catLabelProjectDetails txt-white font-18'>
-                                Categoria
-                            </Text>
-                            <img src='/images/Arrow_right.png' className='arrowPrjectDetails' />
-                            <Text className='catProjectDetails txt-white font-18'>
-                                Desgign UIX/UI
-                            </Text>
-                        </p>
+                    <Row>
+                        <Col xs={0} xl={24}>
+                            <p >
+                                <Text className='catLabelProjectDetails txt-white font-18'>
+                                    Categoria
+                                </Text>
+                                <img src='/images/Arrow_right.png' className='arrowPrjectDetails' />
+                                <Text className='catProjectDetails txt-white font-18'>
+                                    Desgign UIX/UI
+                                </Text>
+                            </p>
+                        </Col>
+                        <Col xs={24} md={0}>
+                                <Text className='catLabelProjectDetails txt-white font-18'>
+                                    Categoria:
+                                </Text>
+                                <br/>
+                                <Text className='catProjectDetails txt-white font-18'>
+                                    Desgign UIX/UI
+                                </Text>
+                        </Col>
+                    </Row>
                 </div>
             </Col>
             <Col span={24}>
@@ -189,9 +207,9 @@ const ProjectDetails = () => {
             <Col span={24}>
                 <Carrousel gallery={currentProject?.gallery2} />
             </Col>
-            <Col span={24}>
+            {/* <Col span={24}>
                 <Carrousel gallery={currentProject?.gallery2} />
-            </Col>
+            </Col> */}
             <ContactSection />
         </Row>
         

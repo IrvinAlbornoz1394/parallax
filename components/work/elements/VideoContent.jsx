@@ -55,15 +55,25 @@ const VideoContent = ({project, ...props}) => {
                .fadeIn{
                     opacity:1;
                     transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
-               
                }
+            
+               .playPng{
+                    height; 300px;
+                    width: 300px;
+               }
+               @media only screen and (max-width: 768px) {
+                /* For mobile phones: */
+                .playPng{
+                    width: 20% !important;
+                   }
+            }
 
             `}
         />
         <Col span={24} style={{ position:'relative' }}>
             <img src={project?.video?.preview} className='img-100' />
             <div className='overlayPlay'>
-                <img id="playPng" src={'/images/play.svg'} alt=""  width={'300px'} height={'300px'}  />
+                <img className='playPng' id="playPng" src={'/images/play.svg'}  alt=""  />
             </div>
         </Col>
         <div className={`modal-video ${openModal ? 'fadeIn' : 'fadeOut'}`}>
