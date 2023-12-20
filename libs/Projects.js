@@ -3,7 +3,7 @@ export const projects = [
         id: 1,
         name: 'Kikert',
         key: 'kikert',
-        main_image: 'https://irvinalbornoz1394.github.io/parallax/_next/static/media/kikert_parallax.656214f3.jpg',
+        main_image: 'https://irvinalbornoz1394.github.io/parallax/images/work/kikert/kikert_parallax.jpg',
         description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
         categories: [{
             id: 1,
@@ -75,7 +75,7 @@ export const projects = [
         video:{
             id:1,
             name: 'video1',
-            preview: '/images/work/kikert/kikert_parallax_blurred.png',
+            preview: 'https://irvinalbornoz1394.github.io/parallax/images/work/kikert/kikert_parallax_blurred.png',
             url: 'http://youtube.com'
         },
         imgFullScreen:{
