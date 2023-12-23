@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { TimelineMax } from './TweenMax.min'
 import { useDispatch } from "react-redux";
+import { setCursorDisable, setHoverActive, setCursorPointer, setHoverStartProject, updHoverServices, clearHoverServices } from '../redux/recuder_slices/webReducer'
 
 
 
@@ -53,13 +54,20 @@ export const transitionFinal = () => {
     
 }
 
-export const routerTransition = (linkFuntion, action1=null, action2=null ) => {
-    
+export const routerTransition = (linkFuntion, dispatch, actionMouse ) => {
+
+    if(dispatch){
+        dispatch(setCursorDisable(true))
+        dispatch(setHoverActive(false))
+        dispatch(setCursorPointer(false))
+    }
+    clearHovers(dispatch)
+
     gsap.to(".wrapper", { duration: .1, zIndex: '101' })
     setTimeout(() => {
-        if(action1){
+        /* if(action1){
             action1()
-        }
+        } */
         gsap.to(".wrapper", { duration: .25, opacity: .25, ease: "none" },)
         gsap.to(".wrapper", { duration: .25, opacity: .50, ease: "none" })
         gsap.to(".wrapper", { duration: .25, opacity: .75, ease: "none" })
@@ -95,10 +103,21 @@ export const routerTransition = (linkFuntion, action1=null, action2=null ) => {
     setTimeout(() => {
         new TimelineMax({repeatDelay: 1})
         .to(".path", .1, {attr: {  d: "M 0 100 V 100 Q 50 100 100 100 V 100 z" }, ease: Power2.easeIn})
-        if(action2){
-            action2()
+        if(actionMouse){
+            actionMouse(false)
         }
+        if(dispatch){
+            dispatch(setCursorDisable(false))
+            dispatch(setHoverActive(false))
+            dispatch(setCursorPointer(false))
+        }
+        
     }, 6000);
 
     
+}
+
+const clearHovers = (dispatch) => {
+    dispatch(setHoverStartProject(false))
+    dispatch(clearHoverServices())
 }

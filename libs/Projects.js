@@ -88,7 +88,7 @@ export const projects = [
         id: 2,
         name: 'ScanFix',
         key: 'scanfix',
-        main_image: 'https://irvinalbornoz1394.github.io/parallax/kikert_parallax.656214f3.jpg',
+        main_image: 'https://irvinalbornoz1394.github.io/parallax/images/work/kikert/kikert_parallax.jpg',
         description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
         categories: [{
             id: 1,
@@ -155,7 +155,7 @@ export const projects = [
         id: 3,
         name: 'Kiimak',
         key: 'kiimak',
-        main_image: 'https://irvinalbornoz1394.github.io/parallax/work/kikert_parallax.656214f3.jpg',
+        main_image: 'https://irvinalbornoz1394.github.io/parallax/images/work/kikert/kikert_parallax.jpg',
         description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
         categories: [{
             id: 1,
@@ -228,7 +228,7 @@ export const projects = [
         id: 4,
         name: 'Hesys',
         key: 'hesys',
-        main_image: 'https://irvinalbornoz1394.github.io/parallax/images/kikert_parallax.656214f3.jpg',
+        main_image: 'https://irvinalbornoz1394.github.io/parallax/images/work/kikert/kikert_parallax.jpg',
         description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
         categories: [{
             id: 1,
@@ -295,7 +295,7 @@ export const projects = [
         id: 5,
         name: 'Momoto',
         key: 'momoto',
-        main_image: 'https://irvinalbornoz1394.github.io/parallax/images/kikert_parallax.656214f3.jpg',
+        main_image: 'https://irvinalbornoz1394.github.io/parallax/images/work/kikert/kikert_parallax.jpg',
         description: '<p>Kikert es una <strong>plataforma moderna de gesti&oacute;n, seguimiento y control</strong> para volver tu taller m&aacute;s eficiente y rentable.<br /><br />Dise&ntilde;ada para administrar los procesos de los talleres volvi&eacute;ndolos eficientes y rentables.<br /><br />Elevando la eficiencia y rentabilidad al tomar las decisiones correctas y en el tiempo preciso visualizando los principales indicadores de desempe&ntilde;o que se muestran en tu dashboard.</p>',
         categories: [{
             id: 1,

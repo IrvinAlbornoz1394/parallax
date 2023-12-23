@@ -798,9 +798,10 @@ const linkToWorkCategory = () => {
       if(value == true){
         const originalKey = key.replace("show_","")
         routerTransition(() => {
-          route.push(`work#_${originalKey}`) 
-          dispatch(updHoverServices({val: false, key: originalKey}))
-        })
+          route.push(`work#_${originalKey}`)
+        },
+        dispatch,
+        mouseHover(false))
         /* let element = document.getElementById(`section_${key}`); */
         //element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
         } 
@@ -829,9 +830,10 @@ const linkToWorkPage = () => {
   
   if(!menu){
     routerTransition(() => {
-      console.log('1')
       route.push(`work`) 
-    }
+    },
+    dispatch,
+    mouseHover(false)
   )
   }
 }
@@ -851,7 +853,10 @@ const validateBtnCrew = () => {
     dispatch(updHoverBtnItemsCrew({val: false, key: hoverBtn}))
     routerTransition(() => {
       route.push(`/crew/${hoverBtn}`)
-    })
+    },
+    dispatch,
+    mouseHover(false)
+    )
     return
   }
 }
@@ -872,6 +877,7 @@ const selectCategory = () => {
 const clickFunction = () => {
 
   if(cursorDisable){
+    alert("d")
     return 
   }
   
@@ -919,7 +925,10 @@ const clickFunction = () => {
     if(route.pathname !== `/`){
       routerTransition(() => {
         route.push(`/#section_ux_ui`) 
-      })
+      },
+      dispatch,
+      mouseHover(false)
+      )
       return 
     }else{
       const element = document.getElementById(`section_ux_ui`);
@@ -957,16 +966,20 @@ const clickFunction = () => {
   if(hoverStartProject){
     routerTransition(() => {
       route.push(`/contact`)
-      dispatch(setHoverStartProject(false))
-    })
+    },
+    dispatch,
+    mouseHover(false)
+    )
   }
 
   /* Validamos el click en el hasta pronto de la pagina de CREW */
   if(hoverCrewToHome){
     routerTransition(() => {
       route.push(`/`)
-      dispatch(setHoverStartProject(false))
-    })
+    },
+    dispatch,
+    mouseHover(false)
+    )
   }
 
   /* Validamos que este en la seccion de work */
@@ -981,8 +994,10 @@ const clickFunction = () => {
       routerTransition(() => {
         route.push(`work`)
       },
-      cursorAnimation1,
-      cursorAnimation2
+      dispatch,
+      mouseHover(false)
+      /* cursorAnimation1,
+      cursorAnimation2 */
     )
     dispatch(setHoverSectionWork(false))
     }
@@ -1003,19 +1018,22 @@ const clickFunction = () => {
   /* Validamos si dio click en algun proyecto */
   /* Click ir al proyecto */
   if(hoverProjects){
-    console.log(2)
       routerTransition(() => {
         route.push(`work/${hoverProjects}`)
-      }
+      },
+      dispatch,
+      mouseHover(false)
     ) 
     dispatch(updHoverProject(null))
   }
 
   if(hoverAllProjects){
-    console.log(3)
     routerTransition(() => {
       route.push(`/work`)
-    })
+    },
+    dispatch,
+    mouseHover(false)
+    )
   }
 
 }
@@ -1040,7 +1058,10 @@ const clickFunction = () => {
         if(value == true){  
           routerTransition(() => {
             route.push(`/#section_${key}`) 
-          })
+          },
+          dispatch,
+          mouseHover(false)
+          )
         }  
       }
     }else{

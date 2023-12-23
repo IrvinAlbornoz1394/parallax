@@ -9,9 +9,12 @@ import Slide from 'react-reveal/Slide';
 const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) => {
     
     const { Title, Text } = Typography
-    const refNameProj = useRef(null);
+    
     const refImgProj = useRef(null);
     const [classList, setClassList] = useState('')
+
+    const titleRef = useRef(null)
+    const arrowRef = useRef(null)
 
     const hoverProjects = useSelector((state) => state.web?.hoverProjects)
 
@@ -62,6 +65,13 @@ const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) 
     const hideCard = () => {
         gsap.to(`#${key_id}`, {duration: .6, scale: 0.5, opacity: 0, ease: "expoScale(1, 5)"});
     }
+
+    const getMargin = () => {
+        
+        const marLeft =  titleRef?.current?.offsetWidth + arrowRef?.current?.offsetWidth + 120
+        console.log('getMargin',marLeft)
+        return marLeft
+    }
     
 
   return (
@@ -104,17 +114,21 @@ const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) 
                     /* opacity: 0;  */
                 }
 
+                .contentCard{
+                    float: left;
+                }
+
                 /* .hoverProjects:focus{
                     outline:0px !important;
                 } */
             `}
         />
         <div id={`show_${key_id}`} className={`hoverProjects titleProjectsContent ${classList}`}  >
-            <Text className='titleListHover text_white font-xxl' ref={refNameProj}>
+            <Text className='titleListHover text_white font-xxl' ref={titleRef}>
                 {nameProject}
             </Text>
-            <img src='/images/Arrow_right.png' className='arrowServices'  />
-            <div className='contentCard' id={`card_show_${key_id}`}>
+            <img ref={arrowRef} src='/images/Arrow_right.png' className='arrowServices' id={`arror_${key_id}`}  />
+            <div className='contentCard' id={`card_show_${key_id}`} style={{ marginLeft: getMargin() }} >
                 <div  className='cardImgProject'>
                     {children}
                 </div>

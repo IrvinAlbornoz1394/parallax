@@ -146,7 +146,7 @@ const ProjectDetails = () => {
                             Proyecto
                         </p>
                         <p className='work-title-project text_white font-xxl'>
-                            Kikert
+                            {currentProject?.name}
                         </p>
                     </div>
                     <Row>
@@ -156,9 +156,14 @@ const ProjectDetails = () => {
                                     Categoria
                                 </Text>
                                 <img src='/images/Arrow_right.png' className='arrowPrjectDetails' />
-                                <Text className='catProjectDetails txt-white font-18'>
-                                    Desgign UIX/UI
-                                </Text>
+                                {
+                                    currentProject?.categories.map(item => (
+                                        <Text className='catProjectDetails txt-white font-18'>
+                                            {" "}{item?.name} /
+                                        </Text>
+                                    ))   
+                                }
+                                
                             </p>
                         </Col>
                         <Col xs={24} md={0}>

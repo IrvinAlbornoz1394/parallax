@@ -227,6 +227,7 @@ export const webSlice = createSlice({
       state.value += action.payload
     },
     setCursorDisable: (state, action) => {
+      console.log('new cursorDisable =>', action.payload)
       state.cursorDisable = action.payload
     }
   },

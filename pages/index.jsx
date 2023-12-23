@@ -195,7 +195,7 @@ const Index = () => {
                 width:100%;
             }
 
-              #textHolder {
+            #textHolder {
                 top: 50px;
                 left: 30px;
                 width: 900px;
@@ -203,10 +203,10 @@ const Index = () => {
                 font-family: "Signika Negative", sans-serif; 
                 position: relative;
                 overflow: hidden;
-              }
+            }
 
 
-              #someCoolClass {
+            #someCoolClass {
                 position: relative;
                 top: 50px;
                 left: 70px;
