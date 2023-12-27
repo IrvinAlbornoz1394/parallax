@@ -114,7 +114,7 @@ const FormContact = () => {
                     </div>
                 </Col>
                 <Col xs={24} md={12}>
-                    <div className='item-form-content'>
+                    <div classNamefirst='item-form-content'>
                         <Form.Item>
                             <Input placeholder='Email' className='noBackground' prefix={<Prefix icon={Email.src} />} />
                         </Form.Item>

@@ -13,21 +13,23 @@ const Contact = () => {
     const nextStepContact = useSelector((state) => state?.web?.nextStepContact)
     const {Title, Text} = Typography
     const slider = useRef();
+    const prev = useRef();
+    const next = useRef()
     const [currentStep, setCurrentStep] = useState(1)
     const dispatch = useDispatch()
 
     const hoverBackContact = useSelector((state) => state?.web?.hoverBackContact)
     
 
-    useEffect(() => {
+    /* useEffect(() => {
         if(nextStepContact){
             slider.current.goTo(1)
             setCurrentStep(2)
-        }/* else{
+        }else{
             slider.current.goTo(0)
             setCurrentStep(1)
-        } */
-    }, [nextStepContact])
+        }
+    }, [nextStepContact]) */
     
 
   return (
@@ -65,7 +67,7 @@ const Contact = () => {
                 }
             `}
         />
-        <MainLayout style={{ paddingBottom: 0 }}  slider_contact={slider}>
+        <MainLayout style={{ paddingBottom: 0 }}  slider_contact={slider} btnNext={next} btnPrev={prev}>
             <Row style={{paddingTop:'10%'}} justify={'center'}>
                 <Col span={21}>
                     <Title level={1}  className='txt-white title-contact'>
@@ -76,7 +78,7 @@ const Contact = () => {
                     </Title>        
                 </Col>
                 <Col  xs={20}>
-                    <Carousel autoplay={false} 
+                    <Carousel dots={false} autoplay={false} className='carousel-contact' id='carousel-contact'
                         ref={ref => {   
                             slider.current = ref;
                         }}
@@ -97,6 +99,8 @@ const Contact = () => {
                             
                         </div>
                     </Carousel>
+                    <Button style={{ display:'none'}} title='prvio' ref={prev} onClick={() => slider?.current.goTo(0)} />
+                    <Button style={{ display:'none'}} title='Next' ref={next} onClick={() => slider?.current.goTo(1)} />
                 </Col>
             </Row>
         </MainLayout>

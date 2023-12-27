@@ -213,6 +213,9 @@ export const webSlice = createSlice({
     setNextStep: (state, action) =>{
       state.nextStepContact = action.payload
     },
+    resetHoverContactFom:(state, action) => {
+      state.hoverContact = {'mark': false, 'uxui': false, 'dev': false, 'otro': false}
+    },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
@@ -268,6 +271,7 @@ export const {
           updHoverToHome,
           updHoverBackContact,
           setCursorDisable,
+          resetHoverContactFom
         } = webSlice.actions
 
 export default webSlice.reducer

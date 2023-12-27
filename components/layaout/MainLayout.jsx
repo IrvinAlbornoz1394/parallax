@@ -18,7 +18,7 @@ const MainLayout = ({ style=null, ...props}) => {
             {
                 showLoading && <Loading />
             }
-            <Demo refLef={props?.arrowLeft} refRight={props?.arrowRight} slider_contact={props?.slider_contact} />
+            <Demo refLef={props?.arrowLeft} refRight={props?.arrowRight} btnNext={props?.btnNext} btnPrev={props?.btnPrev} /* slider_contact={props?.slider_contact} */ />
             <MyHeader />
             <Content className='body'>          
                 <div className='body-content-children'>

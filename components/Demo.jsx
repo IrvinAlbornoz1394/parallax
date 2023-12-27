@@ -2,13 +2,14 @@ import { Global, css } from '@emotion/react'
 import React, { useEffect } from 'react'
 import { gsap } from 'gsap';
 import { useSelector, useDispatch } from 'react-redux'
-import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, updHoverServicesCat, updHoverToHome, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, updHoverBtnItemsCrew, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo, setHoverContact, setNextStep, updHoverBackContact, setCursorDisable } from '../redux/recuder_slices/webReducer'
+import { setHoverWork, setHoverNvoProject, setHoverNvoProjectHeader, updHoverServicesCat, updHoverToHome, setHoverAllProjects, setHoverPlay, setHoverActive, setHoverArrowLeft, setHoverArrowRight, updHoverBtnItemsCrew, setCursorPointer, updHoverServices, clearHoverServices, updHoverLinks, updHoverMenu, updHoverCrew, setHoverCookies, setShowCookie, setHoverSectionWork, setHoverStartProject, setCatWorkSelected, updHoverProject, setOpenVideo, setHoverCloseVideo, setHoverContact, setNextStep, updHoverBackContact, resetHoverContactFom, setCursorDisable } from '../redux/recuder_slices/webReducer'
 import { routerTransition } from '../libs/functions'
 
 import { useRouter } from 'next/router';
+import next from 'next';
 
 
-const Demo = ({refLef = null, refRight = null, slider_contact=null, ...props}) => {
+const Demo = ({refLef = null, refRight = null, slider_contact=null, btnPrev=null, btnNext=null,  ...props}) => {
 
   const dispatch = useDispatch()
   const route = useRouter()
@@ -302,36 +303,40 @@ const Demo = ({refLef = null, refRight = null, slider_contact=null, ...props}) =
 
   /* Validamos si esta en el boton de back de contacto */
   /* Como son varios por el slide se validan todos por clase*/
-  const validateHoverBackContact = (e) => {
-    let elements = document.getElementsByClassName("slick-active")
-    if(elements.length > 0){
-      let child_item =  elements[0].querySelector("button#btnBackContact")
-        if(child_item){
-          validateBackContact(child_item, e)
-        }
-    }
-  }
   
-  const validateBackContact = (item, e) => {
-    
-    let coords_btnBack = item.getBoundingClientRect()
-    if(coords_btnBack){
-      let xMin = coords_btnBack.x
-      let xMax = coords_btnBack.x + coords_btnBack.width
-      let yMin = coords_btnBack.y
-      let yMax = coords_btnBack.y + coords_btnBack.height
+
+  
+  const validateHoverBackContact = (e) => {
+    let btns_back = document.getElementById("carousel-contact")
+    let child_item = btns_back.querySelector("div.slick-active")
+    let current_btn_back = child_item.querySelector("button#btnBackContact")
+    if(current_btn_back){
+      let coords_btnBack = current_btn_back.getBoundingClientRect() 
+      if(coords_btnBack){
+        let xMin = coords_btnBack.x
+        let xMax = coords_btnBack.x + coords_btnBack.width
+        let yMin = coords_btnBack.y
+        let yMax = coords_btnBack.y + coords_btnBack.height
         if (xMin < e.x && e.x < xMax && yMin < e.y && e.y < yMax && !hoverBackContact){
-          console.log('si')
           dispatch(updHoverBackContact(true))
           mouseHover(true)
-          return true
         } else if(xMin > e.x || e.x > xMax || yMin > e.y || e.y > yMax) {
-          console.log('no')
           dispatch(updHoverBackContact(false))
+          mouseHover(false)
           
-          return false
         }
+      }
     }
+    
+
+    /* let btn = item.childNodes[0].childNodes[1].getElementsByClassName('btn_team_link') */
+    /* if(btns_back){
+      for (let item of btns_back) {
+        
+        
+      }  */
+
+  
   }
 
   /* Validar hover para la sección de work */
@@ -895,6 +900,8 @@ const clickFunction = () => {
 
   nextStepContact()
 
+  prevStateContact()
+
   /* Link to Work by Button */
   if(hoverWork){
     if(validateHoverInMenu()){
@@ -952,10 +959,10 @@ const clickFunction = () => {
   }
 
   /* Validar boton para volver al paso 1 del form de contacto */
-  if(hoverBackContact){
+  /* if(hoverBackContact){
     slider_contact?.current.goTo(0)
     return
-  }
+  } */
 
 
   
@@ -1039,14 +1046,20 @@ const clickFunction = () => {
 }
 
   const nextStepContact = async () => {
-    
     for (const [key, value] of Object.entries(hoverContact)) {
       if(value == true){  
-        console.log('key', key)
-        console.log(slider_contact)
-        slider_contact?.current.goTo(1)
-        
+        btnNext?.current?.click()
+        dispatch(resetHoverContactFom())
+        /* document.removeEventListener('mousemove', onMouseMove)
+        document.addEventListener('mousemove', onMouseMove); */
       }  
+    }
+  }
+
+  const prevStateContact = async () => {
+    if(hoverBackContact){
+      btnPrev?.current?.click()
+      dispatch(updHoverBackContact(false))
     }
   }
 
