@@ -18,7 +18,14 @@ const MainLayout = ({ style=null, ...props}) => {
             {
                 showLoading && <Loading />
             }
-            <Demo refLef={props?.arrowLeft} refRight={props?.arrowRight} btnNext={props?.btnNext} btnPrev={props?.btnPrev} /* slider_contact={props?.slider_contact} */ />
+            <Demo refLef={props?.arrowLeft} refRight={props?.arrowRight} btnNext={props?.btnNext} btnPrev={props?.btnPrev} 
+            inputName={props?.inputName}
+            inputEmail={props?.inputEmail}
+            inputTel={props?.inputTel}
+            inputCompany={props?.inputCompany}
+            inputPlace={props?.inputPlace}
+            inputComments={props?.inputComments}
+            /* slider_contact={props?.slider_contact} */ />
             <MyHeader />
             <Content className='body'>          
                 <div className='body-content-children'>

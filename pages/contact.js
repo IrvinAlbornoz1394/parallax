@@ -15,6 +15,14 @@ const Contact = () => {
     const slider = useRef();
     const prev = useRef();
     const next = useRef()
+
+    const inputName = useRef()
+    const inputEmail = useRef()
+    const inputTel = useRef()
+    const inputCompany = useRef()
+    const inputPlace = useRef()
+    const inputComments = useRef()
+
     const [currentStep, setCurrentStep] = useState(1)
     const dispatch = useDispatch()
 
@@ -67,7 +75,14 @@ const Contact = () => {
                 }
             `}
         />
-        <MainLayout style={{ paddingBottom: 0 }}  slider_contact={slider} btnNext={next} btnPrev={prev}>
+        <MainLayout style={{ paddingBottom: 0 }}  slider_contact={slider} btnNext={next} btnPrev={prev}
+        inputName={inputName}
+        inputEmail={inputEmail}
+        inputTel={inputTel}
+        inputCompany={inputCompany}
+        inputPlace={inputPlace}
+        inputComments={inputComments}
+        >
             <Row style={{paddingTop:'10%'}} justify={'center'}>
                 <Col span={21}>
                     <Title level={1}  className='txt-white title-contact'>
@@ -93,7 +108,12 @@ const Contact = () => {
                         <div>
                             <Row justify={'center'}>
                                 <Col md={14} xs={24} >
-                                    <FormContact />
+                                    <FormContact inputName={inputName}
+                                        inputEmail={inputEmail}
+                                        inputTel={inputTel}
+                                        inputCompany={inputCompany}
+                                        inputPlace={inputPlace}
+                                        inputComments={inputComments} />
                                 </Col>
                             </Row>
                             

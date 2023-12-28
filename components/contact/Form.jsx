@@ -9,7 +9,7 @@ import Marker from '../../assets/images/contact/marker.png'
 import { LeftOutlined } from '@ant-design/icons';
 
 
-const FormContact = () => {
+const FormContact = ({inputName=null, inputEmail=null, inputTel=null, inputCompany=null, inputPlace=null, inputComments=null}) => {
     const [form] = Form.useForm()
 
 
@@ -107,37 +107,37 @@ const FormContact = () => {
         <Form>
             <Row gutter={[20,30]} justify={'space-between'}>
                 <Col xs={24} md={24} >
-                    <div className='item-form-content'>
-                        <Form.Item>
-                            <Input placeholder='Nombre y apellido' className='noBackground' prefix={<Prefix icon={User.src} />} />
+                    <div className='item-form-content formContactInput' id='name' >
+                        <Form.Item >
+                            <Input ref={inputName} id='input_name' placeholder='Nombre y apellido' className='noBackground' prefix={<Prefix icon={User.src} />} />
                         </Form.Item>
                     </div>
                 </Col>
-                <Col xs={24} md={12}>
-                    <div classNamefirst='item-form-content'>
+                <Col xs={24} md={12} id='email' className='formContactInput'>
+                    <div className='item-form-content'>
                         <Form.Item>
-                            <Input placeholder='Email' className='noBackground' prefix={<Prefix icon={Email.src} />} />
+                            <Input ref={inputEmail} id='input_email' placeholder='Email' className='noBackground' prefix={<Prefix icon={Email.src} />} />
                         </Form.Item>
                     </div>
                 </Col>
-                <Col xs={24} md={12}>
+                <Col xs={24} md={12} className='formContactInput' id='tel'>
                     <div className='item-form-content'>
                         <Form.Item>
-                            <Input placeholder='Teléfono' className='noBackground' prefix={<Prefix icon={Phone.src} />} />
+                            <Input ref={inputTel} id='input_tel' placeholder='Teléfono' className='noBackground' prefix={<Prefix icon={Phone.src} />} />
                         </Form.Item>
                     </div>
                 </Col>
-                <Col xs={24} md={12}>
+                <Col xs={24} md={12} className='formContactInput' id='company'>
                     <div className='item-form-content'>
                         <Form.Item>
-                            <Input placeholder='Nombre de tu empresa' className='noBackground' prefix={<Prefix icon={Company.src} />} />
+                            <Input ref={inputCompany} id='input_company' placeholder='Nombre de tu empresa' className='noBackground' prefix={<Prefix icon={Company.src} />} />
                         </Form.Item>
                     </div>
                 </Col>
-                <Col xs={24} md={12}>
+                <Col xs={24} md={12} className='formContactInput' id='place'>
                     <div className='item-form-content'>
                         <Form.Item>
-                            <Input placeholder='Lugar de residencia' className='noBackground' prefix={<Prefix icon={Marker.src} />} />
+                            <Input  ref={inputPlace} id='input_place' placeholder='Lugar de residencia' className='noBackground' prefix={<Prefix icon={Marker.src} />} />
                         </Form.Item>
                     </div>
                 </Col>
@@ -149,7 +149,7 @@ const FormContact = () => {
                                     <Prefix icon={Marker.src} />
                                 </Col>
                                 <Col span={23}>
-                                    <Input.TextArea autoSize placeholder='Lugar de residencia' className='noBackground' prefix={<Prefix icon={Marker.src} />} />
+                                    <Input.TextArea ref={inputComments} id='comments' autoSize placeholder='Lugar de residencia' className='formContactInput noBackground' prefix={<Prefix icon={Marker.src} />} />
                                 </Col>
                             </Row>
                         </Form.Item>
@@ -161,7 +161,7 @@ const FormContact = () => {
                     </Button>
                 </Col>
                 <Col>
-                    <Button htmlType="submit" className="btnContact">
+                    <Button htmlType="submit" className="btnContact btnSendContact" id="btnSendContact">
                         Enviar
                     </Button>
                 </Col>

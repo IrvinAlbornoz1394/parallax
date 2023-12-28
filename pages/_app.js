@@ -8,7 +8,7 @@ import Transition from '../components/layaout/Transition'
 
 export default function App({ Component, pageProps }) {
   return <Provider store={store}>
-    
+    <Transition />
     <Component {...pageProps} />
   </Provider>
 }
