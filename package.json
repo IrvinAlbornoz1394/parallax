@@ -27,7 +27,6 @@
     "react-multi-carousel": "^2.8.4",
     "react-redux": "^8.0.5",
     "react-reveal": "^1.2.2",
-    "resend": "^2.0.0",
     "three": "^0.154.0"
   }
 }
