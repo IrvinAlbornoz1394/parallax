@@ -22,6 +22,7 @@ const Contact = () => {
     const inputCompany = useRef()
     const inputPlace = useRef()
     const inputComments = useRef()
+    const btnSubmit = useRef()
 
     const [currentStep, setCurrentStep] = useState(1)
     const dispatch = useDispatch()
@@ -82,6 +83,7 @@ const Contact = () => {
         inputCompany={inputCompany}
         inputPlace={inputPlace}
         inputComments={inputComments}
+        btnSubmit={btnSubmit}
         >
             <Row style={{paddingTop:'10%'}} justify={'center'}>
                 <Col span={21}>
@@ -113,7 +115,10 @@ const Contact = () => {
                                         inputTel={inputTel}
                                         inputCompany={inputCompany}
                                         inputPlace={inputPlace}
-                                        inputComments={inputComments} />
+                                        inputComments={inputComments} 
+                                        btnSubmit={btnSubmit}
+                                        />
+                                        
                                 </Col>
                             </Row>
                             

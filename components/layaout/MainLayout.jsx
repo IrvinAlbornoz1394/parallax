@@ -25,6 +25,7 @@ const MainLayout = ({ style=null, ...props}) => {
             inputCompany={props?.inputCompany}
             inputPlace={props?.inputPlace}
             inputComments={props?.inputComments}
+            btnSubmit={props?.btnSubmit}
             /* slider_contact={props?.slider_contact} */ />
             <MyHeader />
             <Content className='body'>          
