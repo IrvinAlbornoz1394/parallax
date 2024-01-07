@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import MainLayout from '../components/layaout/MainLayout'
-import { Button, Carousel, Col, Row, Space, Typography } from 'antd'
+import { Button, Carousel, Col, Collapse, Row, Space, Typography } from 'antd'
 import { Global, css } from '@emotion/react'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContact from '../components/contact/Form'
@@ -28,6 +28,7 @@ const Contact = () => {
     const dispatch = useDispatch()
 
     const hoverBackContact = useSelector((state) => state?.web?.hoverBackContact)
+    const stepForm = useSelector((state) => state?.web?.contactStep)
     
 
     /* useEffect(() => {
@@ -74,6 +75,11 @@ const Contact = () => {
                         font-weight: bolder;
                     }
                 }
+                .accordion_contact{
+                    .ant-collapse-header {
+                        padding: 0px !important;
+                    }
+                }
             `}
         />
         <MainLayout style={{ paddingBottom: 0 }}  slider_contact={slider} btnNext={next} btnPrev={prev}
@@ -89,13 +95,34 @@ const Contact = () => {
                 <Col span={21}>
                     <Title level={1}  className='txt-white title-contact'>
                         {
-                            currentStep === 1 ? "Estoy interesado en..." : "Estemos en contacto"
+                            stepForm === 1 ? "Estoy interesado en..." : "Estemos en contacto"
                         }
                         
                     </Title>        
                 </Col>
                 <Col  xs={20}>
-                    <Carousel dots={false} autoplay={false} className='carousel-contact' id='carousel-contact'
+                    <Collapse ghost className='accordion_contact' activeKey={stepForm} accordion  items={[
+                        {
+                            key: 1,
+                            label: '',
+                            children: <SelectService />,
+                            showArrow: false
+                        },
+                        {
+                            key: 2,
+                            label: '',
+                            showArrow: false,
+                            children: <FormContact inputName={inputName}
+                            inputEmail={inputEmail}
+                            inputTel={inputTel}
+                            inputCompany={inputCompany}
+                            inputPlace={inputPlace}
+                            inputComments={inputComments} 
+                            btnSubmit={btnSubmit}
+                            />,
+                        },
+                    ]} />
+                    {/* <Carousel dots={false} autoplay={false} className='carousel-contact' id='carousel-contact'
                         ref={ref => {   
                             slider.current = ref;
                         }}
@@ -123,9 +150,7 @@ const Contact = () => {
                             </Row>
                             
                         </div>
-                    </Carousel>
-                    <Button style={{ display:'none'}} title='prvio' ref={prev} onClick={() => slider?.current.goTo(0)} />
-                    <Button style={{ display:'none'}} title='Next' ref={next} onClick={() => slider?.current.goTo(1)} />
+                    </Carousel> */}
                 </Col>
             </Row>
         </MainLayout>

@@ -233,7 +233,7 @@ const FormContact = ({inputName=null, inputEmail=null, inputTel=null, inputCompa
                     </div>
                 </Col>
                 <Col>
-                    <Button htmlType="button"   id="btnBackContact" className="btnContactBack">
+                    <Button htmlType="button"  ghost id="btn_back_contact" className="btnContactBack">
                        <LeftOutlined />  Regresar
                     </Button>
                 </Col>

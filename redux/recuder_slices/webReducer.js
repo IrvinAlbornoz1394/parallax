@@ -83,6 +83,7 @@ export const webSlice = createSlice({
     hoverBackContact: false,
     cursorDisable: false,
     serviceSelected: null,
+    contactStep: 1
   },
   reducers: {
     loadServices: (state, action) => { 
@@ -252,6 +253,9 @@ export const webSlice = createSlice({
     },
     setServiceSelected: (state, action) => {
       state.serviceSelected = action.payload
+    },
+    setContactStep: (state, action) => {
+      state.contactStep = action.payload
     }
   },
 })
@@ -294,7 +298,8 @@ export const {
           resetHoverContactFom,
           setHoverInputForm,
           setHoverSendContact,
-          setServiceSelected
+          setServiceSelected,
+          setContactStep
         } = webSlice.actions
 
 export default webSlice.reducer
