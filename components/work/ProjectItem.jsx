@@ -1,5 +1,5 @@
 import { Global, css } from '@emotion/react';
-import { Typography } from 'antd'
+import { Image, Typography } from 'antd'
 import React, { useRef, useLayoutEffect, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { useSelector } from 'react-redux';
