@@ -1049,6 +1049,7 @@ const clickFunction = () => {
       return
     }
     if(route.pathname !== `/`){
+      
       routerTransition(() => {
         route.push(`/#section_ux_ui`) 
       },
@@ -1143,7 +1144,7 @@ const clickFunction = () => {
 
   /* Validamos si dio click en algun proyecto */
   /* Click ir al proyecto */
-  if(hoverProjects){
+  if(hoverProjects){ 
       routerTransition(() => {
         route.push(`work/${hoverProjects}`)
       },
@@ -1153,7 +1154,7 @@ const clickFunction = () => {
     dispatch(updHoverProject(null))
   }
 
-  if(hoverAllProjects){
+  if(hoverAllProjects){ 
     routerTransition(() => {
       route.push(`/work`)
     },

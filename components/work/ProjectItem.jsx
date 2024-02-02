@@ -4,6 +4,7 @@ import React, { useRef, useLayoutEffect, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { useSelector } from 'react-redux';
 import Slide from 'react-reveal/Slide';
+import Arrow_right from '../../public/images/Arrow_right.png'
 
 
 const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) => {
@@ -127,7 +128,7 @@ const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) 
             <Text className='titleListHover text_white font-xxl' ref={titleRef}>
                 {nameProject}
             </Text>
-            <img ref={arrowRef} src='/images/Arrow_right.png' className='arrowServices' id={`arror_${key_id}`}  />
+            <img ref={arrowRef} src={Arrow_right} className='arrowServices' id={`arror_${key_id}`}  />
             <div className='contentCard' id={`card_show_${key_id}`} style={{ marginLeft: getMargin() }} >
                 <div  className='cardImgProject'>
                     {children}

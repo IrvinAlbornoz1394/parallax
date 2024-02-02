@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { TimelineMax } from './TweenMax.min'
 import { useDispatch } from "react-redux";
-import { setCursorDisable, setHoverActive, setCursorPointer, setHoverStartProject, updHoverServices, clearHoverServices } from '../redux/recuder_slices/webReducer'
+import { setCursorDisable, setHoverActive, setCursorPointer, setHoverAllProjects, setHoverStartProject, updHoverServices, clearHoverServices } from '../redux/recuder_slices/webReducer'
 
 
 
@@ -110,6 +110,7 @@ export const routerTransition = (linkFuntion, dispatch, actionMouse ) => {
             dispatch(setCursorDisable(false))
             dispatch(setHoverActive(false))
             dispatch(setCursorPointer(false))
+            dispatch(setHoverAllProjects(false))
         }
         
     }, 6000);

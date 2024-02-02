@@ -23,6 +23,8 @@ const FormContact = ({inputName=null, inputEmail=null, inputTel=null, inputCompa
 
     const [sending, setSending] = useState(false)
 
+    const ruleRequired = {required: true, message: '*Este campo es requerido*'}
+
 
     const Prefix = ({icon}) => (
         <div className='boxPrefix'>
@@ -119,11 +121,14 @@ const FormContact = ({inputName=null, inputEmail=null, inputTel=null, inputCompa
                     }
                 }
                 .item-form-content{
-                    border-bottom: solid 1px white;
                     .ant-form-item{
                         margin-bottom: 5px;
                     }
+                    .ant-form-item-control-input{
+                        border-bottom: solid 1px white;
+                    }
                     .noBackground{
+                        
                         background: transparent;
                         border: none;
                         input{
@@ -185,21 +190,21 @@ const FormContact = ({inputName=null, inputEmail=null, inputTel=null, inputCompa
             <Row gutter={[20,30]} justify={'space-between'}>
                 <Col xs={24} md={24} >
                     <div className='item-form-content formContactInput' id='name' >
-                        <Form.Item name={'name'} >
-                            <Input ref={inputName} id='input_name' placeholder='Nombre y apellido' className='noBackground' prefix={<Prefix icon={User.src} />} />
+                        <Form.Item name={'name'} rules={[ruleRequired]} >
+                            <Input ref={inputName} id='input_name' placeholder='Nombre y apellido*' className='noBackground' prefix={<Prefix icon={User.src} />} />
                         </Form.Item>
                     </div>
                 </Col>
                 <Col xs={24} md={12} id='email' className='formContactInput'>
                     <div className='item-form-content'>
-                        <Form.Item name={'email'}>
+                        <Form.Item name={'email*'} rules={[ruleRequired]}>
                             <Input ref={inputEmail} id='input_email' placeholder='Email' className='noBackground' prefix={<Prefix icon={Email.src} />} />
                         </Form.Item>
                     </div>
                 </Col>
-                <Col xs={24} md={12} className='formContactInput' id='tel'>
+                <Col xs={24} md={12} className='formContactInput' id='tel' >
                     <div className='item-form-content'>
-                        <Form.Item name={'tel'}>
+                        <Form.Item name={'tel'} rules={[ruleRequired]}>
                             <Input ref={inputTel} id='input_tel' placeholder='Teléfono' className='noBackground' prefix={<Prefix icon={Phone.src} />} />
                         </Form.Item>
                     </div>
@@ -220,7 +225,7 @@ const FormContact = ({inputName=null, inputEmail=null, inputTel=null, inputCompa
                 </Col>
                 <Col xs={24} md={24}>
                     <div className='item-form-content'>
-                        <Form.Item style={{paddingLeft:10}} name={'message'}>
+                        <Form.Item rules={[ruleRequired]} style={{paddingLeft:10}} name={'message'}>
                             <Row>
                                 <Col span={1}>
                                     <Prefix icon={Marker.src} />
