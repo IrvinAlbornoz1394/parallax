@@ -128,7 +128,7 @@ const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) 
             <Text className='titleListHover text_white font-xxl' ref={titleRef}>
                 {nameProject}
             </Text>
-            <img ref={arrowRef} src={Arrow_right} className='arrowServices' id={`arror_${key_id}`}  />
+            <Image ref={arrowRef} src={Arrow_right} className='arrowServices' id={`arror_${key_id}`} />
             <div className='contentCard' id={`card_show_${key_id}`} style={{ marginLeft: getMargin() }} >
                 <div  className='cardImgProject'>
                     {children}
