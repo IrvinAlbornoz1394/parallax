@@ -1,10 +1,11 @@
 import { Global, css } from '@emotion/react';
-import { Image, Typography } from 'antd'
+import {  Typography } from 'antd'
 import React, { useRef, useLayoutEffect, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { useSelector } from 'react-redux';
 import Slide from 'react-reveal/Slide';
 import Arrow_right from '../../public/images/Arrow_right.png'
+import Image from 'next/image';
 
 
 const ProjectItem = ({nameProject=null, key_id=null, cats, children, ...props}) => {
