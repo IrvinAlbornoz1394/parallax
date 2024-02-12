@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import {projects} from '../../libs/Projects'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import Arrow_right from '../../public/images/Arrow_right.png'
+import Image from 'next/image';
 
 
 
@@ -155,7 +157,7 @@ const ProjectDetails = () => {
                                 <Text className='catLabelProjectDetails txt-white font-18'>
                                     Categoria
                                 </Text>
-                                <img src='/images/Arrow_right.png' className='arrowPrjectDetails' />
+                                <Image src={Arrow_right} className='arrowPrjectDetails'/>
                                 {
                                     currentProject?.categories.map(item => (
                                         <Text className='catProjectDetails txt-white font-18'>
