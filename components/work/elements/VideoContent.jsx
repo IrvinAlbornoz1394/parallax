@@ -3,7 +3,7 @@ import { Col, Typography } from 'antd'
 import React, { useState } from 'react'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
-import Image from 'next/image'
+import ImgPlay from '../../../assets/images/play.svg'
 
 
 const VideoContent = ({project, ...props}) => {
@@ -74,7 +74,7 @@ const VideoContent = ({project, ...props}) => {
         <Col span={24} style={{ position:'relative' }}>
             <img src={project?.video?.preview} className='img-100' />
             <div className='overlayPlay'>
-                <Image className='playPng' id="playPng" src={'/images/play.svg'}  alt=""  />
+                <img className='playPng' id="playPng" src={ImgPlay.src}  alt=""  />
             </div>
         </Col>
         <div className={`modal-video ${openModal ? 'fadeIn' : 'fadeOut'}`}>
