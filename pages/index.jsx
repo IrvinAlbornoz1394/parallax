@@ -224,51 +224,58 @@ const Index = () => {
         />
         <MainLayout arrowLeft={arrowLeft} arrowRight={arrowRight}>
             <MainFullScreen />
-                {
-                    showCookies &&
-                    <Cookies />
-                }
-                <div className='hfull' id="section_Home">
-                    <Row justify={'center'}>
-                        <Col span={ 20 }>   
-                            <Text className='text_white font-30'>
-                                Creación de productos y experiencias digitales. 
-                            </Text>
-                                <ul className='list_flat titleExperiences txt-white font-xxl'>
-                                    <li>
-                                        <span className='txtYellow'>Unique</span> experiences
-                                    </li>
-                                    <li>
-                                        <span className='carTexYellow yellowPassionate'>Passionate</span> about UX/UI
-                                    </li>
-                                    <li>
-                                        Design, <span className='txtYellow'>gamification</span> & IA
-                                    </li>
-                                    <li>
-                                        Products that <span className='txtYellow'>transform</span>
-                                    </li>
-                                    <li>
-                                        Less common, more <span className='carTexYellow yellowAlien'>alien</span>.
-                                    </li>
-                                </ul>
-                                <div className='textContent'>
-                                    <div id="textHolder">
-                                        <p className='txt-white font-18 textSplit' id="textRevel">
-                                            Aumenta la participación de mercado y optimiza la experiencia del cliente trabajando 
-                                            con nuestro equipo para crear productos y servicios digitales modernos de una manera 
-                                            colaborativa y centrada en el ser humano
-                                        </p>
-                                    </div>
-                                </div>
-                                
-                        </Col>
-                    </Row>
-                </div>
-                <Crew refLef={arrowLeft} refRight={arrowRight} />
-                <SectionServices />
-                <Work />
-                <StartProject />
-                <ContactSection />
+            {
+                showCookies &&
+                <Cookies />
+            }
+            <div className='hfull' id="section_Home">
+                <Row justify={'center'}>
+                    <Col xs={22} sm={22} md={0} style={{ textAlign:'center' }}>
+                        <Text className='text_white font-30'>
+                            Creación de productos y experiencias digitales. 
+                        </Text>
+                    </Col>
+                    <Col md={20} xs={0} sm={0}>   
+                        <Text className='text_white font-30'>
+                            Creación de productos y experiencias digitales. 
+                        </Text>
+                    </Col>
+                    <Col md={20} sm={22} xs={22}>   
+                        <ul className='list_flat titleExperiences txt-white font-xxl'>
+                            <li>
+                                <span className='txtYellow'>Unique</span> experiences
+                            </li>
+                            <li>
+                                <span className='carTexYellow yellowPassionate'>Passionate</span> about UX/UI
+                            </li>
+                            <li>
+                                Design, <span className='txtYellow'>gamification</span> & IA
+                            </li>
+                            <li>
+                                Products that <span className='txtYellow'>transform</span>
+                            </li>
+                            <li>
+                                Less common, more <span className='carTexYellow yellowAlien'>alien</span>.
+                            </li>
+                        </ul>
+                        <div className='textContent'>
+                            <div id="textHolder">
+                                <p className='txt-white font-18 textSplit' id="textRevel">
+                                    Aumenta la participación de mercado y optimiza la experiencia del cliente trabajando 
+                                    con nuestro equipo para crear productos y servicios digitales modernos de una manera 
+                                    colaborativa y centrada en el ser humano
+                                </p>
+                            </div>
+                        </div>
+                            
+                    </Col>
+                </Row>
+            </div>
+            <Crew refLef={arrowLeft} refRight={arrowRight} />
+            <SectionServices />
+            <Work />
+            <StartProject />
+            <ContactSection />
         </MainLayout>
             {/* <Cursor/> */}
         </>
